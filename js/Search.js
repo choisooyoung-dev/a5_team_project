@@ -25,41 +25,39 @@ function Authorization() {
 // const encodedText = encodeURI(originalText);
 // 띄어쓰기는 알아서 걸러준다 
 //  `https://image.tmdb.org/t/p/w500${movieArr[i].backdrop_path}` 이미지url
-export  async function SearchMovie() {
-    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${검색어url인코딩}&include_adult=false&language=ko&page=${count}`, Authorization())
+async function SearchMovie() {
+    const inputData = document.querySelector('.searchInput');
+    const encodedText = encodeURIComponent(inputData.value);
+    let count = 1;
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodedText}&include_adult=false&language=ko&page=${count}`, Authorization())
     const jsonData = await response.json()
-    const movieData = jsonData.results;
-    const movieAppend = document.getElementById("movie-container");
-    movieData.forEach(movie => {
-        // let addhtml = `
-        //     <div class="movie-card" data-id=${movie.id} style="display:block">
-        //         <img src="${url}${movie.poster_path}" alt="" width="300px" id="img-${movie.id}">
-        //         <p class="movie-title" id="title-${movie.id}">${movie.title}</p>
-        //         <p class="movie-vote_average">${movie.vote_average}</p>
-        //         <p class="movie-overview" id ="overview-${movie.id}" style="display:none">  ${movie.overview}</p>
-        //     </div>
-        // `;
+    const searchData = jsonData.results;
+    const addMovie = document.querySelector(".posterBox");
+    // 화면에있는 카드들 싹다 삭제
+    addMovie.innerHTML = "";
+    searchData.forEach(movie => {
         let addhtml =`
-        <div class="posterImgBox">
-
-            <img
-                class="posterImg"
-                id="${movie.id}"
-                src="${movieImg}"
-                alt="poster image"
-            />
-
-            <div class="posterContentsBox">
-
-            <span class="posterId">${movieId}</span>
-
-            <h2 class="title">${movieTitle}</h2>
-
-            <div class="ratingBox">
-                    <span class="rating">평점 ${movieRating}</span>
-                </div>
+        <div class="poster">
+        <div class="card bg-dark text-white">
+          <div class="movieId">${movie.id}</div>
+          <img
+            src="https://image.tmdb.org/t/p/w500${movie.backdrop_path}"
+            class="card-img posterImg"
+            alt="movie poster image"
+          />
+          <div class="card-img-overlay posterContentsBox">
+            <h5 class="card-title title">${movie.title}</h5>
+            <div class="contentWrap">
+              <p class="card-text">
+                <i class="fa-solid fa-star star"></i>${movie.vote_average}
+              </p>
             </div>
-        </div>`
-        movieAppend.innerHTML += addhtml;
+          </div>
+        </div>
+      </div>
+        `
+        // addMovie.innerHTML += addhtml;
+        // 이번에는 appendChild써보자
+        addMovie.appendChild(addhtml);
     });
 }
