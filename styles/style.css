@@ -176,6 +176,10 @@ footer {
   font-family: "Black Han Sans", sans-serif;
 }
 
+.btn-box a {
+  cursor: pointer;
+}
+
 a:hover {
   color: #e9b802;
 }
@@ -191,6 +195,15 @@ a:hover {
 
 .contents_box {
   background-color: #a9a9a9;
+}
+
+.poster-section {
+  font-size: 50px;
+  text-align: start;
+}
+
+.poster-img img {
+  width: 500px;
 }
 
 @media screen and (max-width: 768px) {
