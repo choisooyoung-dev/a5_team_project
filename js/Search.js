@@ -24,13 +24,11 @@ async function SearchMovie() {
   if (inputData == "") {
     alert("값을 입력하시오");
     return;
-  } else if (/[!@#$%^&*()_+\-=,.<>/?~`{}]/.test(inputData)) {
-    alert("특수문자X");
-    return;
-  } else if (inputData.includes("]")) {
-    alert("특수문자X");
-    return;
-  } else if (inputData.includes("[")) {
+  } else if (
+    /[!@#$%^&*()_+\-=,.<>/?~`{}]/.test(inputData) ||
+    inputData.includes("]") ||
+    inputData.includes("[")
+  ) {
     alert("특수문자X");
     return;
   }
@@ -113,7 +111,10 @@ function EnterBtn() {
     }
   });
 }
-
+function test() {
+  console.log("Hello!");
+}
+setInterval(test, 3000);
 document.getElementById("searchInput").focus();
 ClickBtn();
 EnterBtn();
