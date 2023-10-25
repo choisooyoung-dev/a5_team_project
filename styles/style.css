@@ -146,8 +146,14 @@ body {
   margin-bottom: 50px;
 }
 
+.detail-poster {
+  width: 800px;
+  padding-right: 0;
+}
+
 .overview {
   color: #fff;
+  height: auto;
 }
 
 .ratingBox {
@@ -217,6 +223,10 @@ a:hover {
   width: 500px;
 }
 
+.backBtn a:hover {
+  color: #181818;
+}
+
 /* phone screen */
 @media screen and (max-width: 768px) {
   .navBox {
@@ -235,11 +245,21 @@ a:hover {
 
   .poster {
     width: 100%;
+    height: auto;
     padding: 0;
   }
 
   .searchBox {
     margin-right: 50px;
+  }
+
+  .overview {
+    font-size: 15px;
+  }
+
+  .title {
+    margin-bottom: 10px;
+    padding-top: 10px;
   }
 }
 
