@@ -111,10 +111,7 @@ function EnterBtn() {
     }
   });
 }
-function test() {
-  console.log("Hello!");
-}
-setInterval(test, 3000);
+
 document.getElementById("searchInput").focus();
 ClickBtn();
 EnterBtn();
