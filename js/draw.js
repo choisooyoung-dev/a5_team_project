@@ -1,7 +1,9 @@
 // 영화 카드 하나하나 그려주는 funtion
 export async function draw(moviesData) {
+  const posterBox = document.querySelector(".posterBox");
+  posterBox.innerHTML = "";
+
   moviesData.forEach((movie) => {
-    const posterBox = document.querySelector(".posterBox");
     // const poster = document.querySelector(".poster");
     const movieId = movie.id;
     const movieTitle = movie.title;
