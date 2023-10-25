@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>댓글용</title>
+
+    <!-- 부트스트랩CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <style>
+        body {
+            /* background-color: #181818; */
+        }
+
+        /* 댓글 총 전체칸 설정 */
+        .View_comment {
+            /* background-color: green; */
+            width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            border: 1px solid black;
+        }
+
+        .Comment_write_container {
+            /* background-color: green; */
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        /* 작성자명 설정 */
+        .User_name_container>input {
+            width: 120px;
+            height: 25px;
+        }
+
+        /* 비밀번호 입력칸 설정 */
+        .User_pw_container>input {
+            width: 120px;
+            height: 25px;
+        }
+
+        /* 댓글 작성창 설정 */
+        .Comment_text_container>textarea {
+            width: 450px;
+            height: 100px;
+        }
+
+        label {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* 댓글 등록버튼 설정 */
+        .Add_btn {
+            /* background-color: ; */
+            /* color: */
+            width: 100px;
+            height: 40px;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 댓글 -->
+    <div class="View_comment">
+        <!-- 총 댓글 수 -->
+        <div class="Comment_container">
+            <div class="Comment_count">
+                <div class="Comment_total">
+                    <h10>총 댓글 수 (<span></span>)</h10>
+                </div>
+            </div>
+        </div>
+
+        <!-- 댓글 표시 -->
+        <div id="Comment_list">
+
+        </div>
+
+        <div class="Comment_write_container">
+            <form id="Commentform">
+                <!-- 작성자명 -->
+                <div class="User_name_container">
+                    <label for="UserName" class="blind">작성자명</label>
+                    <input type="text" id="UserName" placeholder="작성자명">
+                </div>
+
+                <!-- 비밀번호 입력칸 -->
+                <div class="User_pw_container">
+                    <label for="password" class="blind">비밀번호 입력</label>
+                    <input type="password" id="password" placeholder="비밀번호 입력" maxlength="10">
+                </div>
+
+                <!-- 댓글 작성창 -->
+                <div class="Comment_text_container">
+                    <label for="Comment_box" class="blind">댓글 작성창</label>
+                    <textarea id="Comment_box" maxlength="200"></textarea>
+                </div>
+
+                <!-- 댓글 등록버튼 -->
+                <div class="Add_btn_container">
+                    <form id="Commentform">
+                        <input type="submit" id="Add_btn" class="Add_btn" value="등록" />
+                    </form>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script>
+        // 해당 html 요소들 가져오기
+        const COMMENTINPUT = document.querySelector('.Comment_write_container');
+        const COMMENTLIST = document.getElementById('Comment_list');
+        const COMMENTFORM = document.getElementById('Commentform');
+        const COMMENT_TOTAL = document.querySelector("h10 > span");
+
+        // 로컬스토리지에 COMMENTLIST 항목이 없을때 비어있는 COMMENTLIST 만들기
+        if (localStorage.getItem('COMMENTLIST') === null) {
+            localStorage.setItem('COMMENTLIST', JSON.stringify([]));
+        }
+
+        // 화면에 댓글 표시하는 함수
+        function DisplayComments() {
+            COMMENTLIST.innerHTML = "";
+
+            let comments = JSON.parse(localStorage.getItem('COMMENTLIST'));
+            comments.forEach((newcomment) => {
+
+                let list_element = document.createElement('ul');
+                list_element.innerHTML = `
+            <li>${newcomment.name}</li>
+            <li>${newcomment.comment}</li>
+            <li><button id="Del_btn" class="btn btn-warning" type="button">삭제</button></li>
+        `;
+                COMMENTLIST.appendChild(list_element)
+
+            });
+        }
+
+        // 페이지 로드시에 아래 함수 실행
+        window.onload = function () {
+            // 화면에 댓글 표시
+            DisplayComments();
+            // 총 댓글 수 표시
+            Total();
+        }
+
+        // 댓글의 총 개수를 표현하는 함수
+        function Total() {
+            let comments = JSON.parse(localStorage.getItem('COMMENTLIST'));
+            COMMENT_TOTAL.innerText = comments.length;
+        }
+
+        // 댓글 작성 함수
+        function WriteComment() {
+            // submit 태그 누를시에 창이 새로고침되는 것(초기화면으로 돌아오는 것)을 막아줌
+            COMMENTINPUT.onsubmit = function (event) {
+                event.preventDefault();
+
+                // 영화 id값 가져오기는 일단 보류
+                let username = document.getElementById('UserName').value;
+                let password = document.getElementById('password').value;
+                let comment = document.getElementById('Comment_box').value;
+                
+                // 작성자 객체 생성
+                let newcomment = {
+                    // id : `${movieId}`,
+                    name: username,
+                    pw: password,
+                    comment: comment,
+                };
+
+                // 기존 댓글 가져오기 및 추가
+                let comments = JSON.parse(localStorage.getItem('COMMENTLIST'));
+                comments.push(newcomment);
+
+                // 로컬스토리지에 댓글 저장
+                localStorage.setItem('COMMENTLIST', JSON.stringify(comments));
+
+                // 입력값 초기화
+                COMMENTFORM.reset();
+
+                // 화면에 댓글 표시
+                DisplayComments();
+                
+                // 총 댓글 수 표시
+                Total();
+            }
+        }
+
+        // 등록 버튼을 클릭하면 댓글 작성 함수 실행
+        COMMENTFORM.addEventListener("submit", WriteComment);
+
+    </script>
+
+</body>
+
+</html>
