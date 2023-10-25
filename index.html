@@ -32,7 +32,12 @@
           <a href="./index.html" class="logo">Soovie</a>
         </h1>
         <form class="searchBox">
-          <input class="searchInput" type="text" id="searchInput" />
+          <input
+            class="searchInput"
+            type="text"
+            id="searchInput"
+            placeholder="Search Title"
+          />
           <button class="searchBtn" type="button" id="searchBtn">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
@@ -66,6 +71,14 @@
       <button class="btn btn-warning viewMoreBtn" type="button">
         View More
       </button>
+      <button
+        class="btn btn-warning viewMoreBtn"
+        type="button"
+        id="searchMoreBtn"
+        style="display: none"
+      >
+        Search View More
+      </button>
     </section>
     <footer>
       <div class="footerBox">
@@ -85,6 +98,6 @@
       crossorigin="anonymous"
     ></script>
     <script type="module" src="js/app.js"></script>
-    <script defer src="js/Search.js"></script>
+    <script type="module" src="js/Search.js"></script>
   </body>
 </html>
