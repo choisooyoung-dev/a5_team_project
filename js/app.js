@@ -28,16 +28,16 @@ async function showMovie(category, count) {
   // 영화 카드 그려주기
   draw(moviesData);
 }
-switchCategory();
 clickViewBtn();
 showMovie(category, count);
+switchCategory();
 
 async function clickViewBtn() {
   const viewBtn = document.querySelector(".viewMoreBtn");
   viewBtn.addEventListener("click", function viewBtnClick(e) {
     e.preventDefault();
     count++;
-    showMovie(count);
+    showMovie(category, count);
     // console.log(count);
     if (count === 5) {
       viewBtn.classList.add("none");
@@ -52,12 +52,12 @@ async function switchCategory() {
     e.preventDefault();
     category = "top_rated";
     // console.log(category);
-    showMovie(category);
+    showMovie(category, count);
   });
   popularBtn.addEventListener("click", (e) => {
     e.preventDefault();
     category = "popular";
     // console.log(category);
-    showMovie(category);
+    showMovie(category, count);
   });
 }
