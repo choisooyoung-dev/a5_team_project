@@ -10,14 +10,15 @@ const options = {
 };
 // 페이지 수(초기값)
 let count = 1;
+let category = "top_rated";
 
-async function showMovie(count) {
-  console.log(count);
+async function showMovie(category, count) {
   // 별점순 영화 데이터 20개 가져오기
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/top_rated?language=ko&page=${count}`,
+    `https://api.themoviedb.org/3/movie/${category}?language=ko&page=${count}`,
     options
   );
+  console.log(response);
   // console.log(response); // Response {type: 'cors', url: 'https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', redirected: false, status: 200, ok: true, …}
   // json(클라이언트와 서버 간의 HTTP 통신 위한 텍스트 데이터 포맷)으로 표기
   const jsonData = await response.json();
@@ -27,9 +28,9 @@ async function showMovie(count) {
   // 영화 카드 그려주기
   draw(moviesData);
 }
-
+switchCategory();
 clickViewBtn();
-showMovie(count);
+showMovie(category, count);
 
 async function clickViewBtn() {
   const viewBtn = document.querySelector(".viewMoreBtn");
@@ -41,5 +42,22 @@ async function clickViewBtn() {
     if (count === 5) {
       viewBtn.classList.add("none");
     }
+  });
+}
+
+async function switchCategory() {
+  const ratingBtn = document.getElementById("ratingBtn");
+  const popularBtn = document.getElementById("popularBtn");
+  ratingBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    category = "top_rated";
+    // console.log(category);
+    showMovie(category);
+  });
+  popularBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    category = "popular";
+    // console.log(category);
+    showMovie(category);
   });
 }
