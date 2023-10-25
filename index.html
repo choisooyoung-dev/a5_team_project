@@ -29,7 +29,7 @@
     <nav>
       <div class="navBox">
         <h1 class="logo">
-          <a href="./index.html" class="logo">Soovie</a>
+          <a href="./index.html" class="logo"></a>
         </h1>
         <form class="searchBox">
           <input
@@ -99,5 +99,51 @@
     ></script>
     <script type="module" src="js/app.js"></script>
     <script type="module" src="js/Search.js"></script>
+    <script>
+      // 로고 깜빡이기
+      // setTimeout, setInterval을 활용한 callback 함수 처리하기
+      const logoTitle = document.querySelector(".logo");
+      const logoContent = ["최수영", "김민수", "김윤겸", "한승준"];
+      const speed = 100;
+      let index = 0;
+
+      // 타이핑 효과
+      const typing = async () => {
+        const letter = logoContent[index].split("");
+
+        while (letter.length) {
+          await wait(speed);
+          logoTitle.innerHTML += letter.shift();
+        }
+        // 잠시 대기
+        await wait(800);
+
+        // 지우는 효과
+        remove();
+      };
+      // 글자 지우는 효과
+      const remove = async () => {
+        const letter = logoContent[index].split("");
+
+        while (letter.length) {
+          await wait(speed);
+
+          letter.pop();
+          logoTitle.innerHTML = letter.join("");
+        }
+
+        // 다음 순서의 글자로 지정, 타이핑 함수 다시 실행
+        index = !logoContent[index + 1] ? 0 : index + 1;
+        typing();
+      };
+
+      // 딜레이 기능 ( 마이크로초 )
+      function wait(ms) {
+        return new Promise((res) => setTimeout(res, ms));
+      }
+
+      // 초기 실행
+      setTimeout(typing, 1500);
+    </script>
   </body>
 </html>
