@@ -29,13 +29,17 @@ export async function draw(moviesData) {
     </div>
     `;
     posterBox.innerHTML += addhtml;
-    const poster = document.getElementsByClassName("poster");
-    for (let i = 0; i < poster.length; i++) {
-      poster[i].addEventListener("click", () => {
-        const movie = poster[i];
-        const movieId = movie.dataset.id;
-        console.log(movieId);
-      });
-    }
   });
+  AddClicklistener();
+}
+
+function AddClicklistener() {
+  const poster = document.getElementsByClassName("poster");
+  for (let i = 0; i < poster.length; i++) {
+    poster[i].addEventListener("click", () => {
+      const movie = poster[i];
+      const movieId = movie.dataset.id;
+      console.log(movieId);
+    });
+  }
 }
