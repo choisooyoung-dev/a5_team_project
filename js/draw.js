@@ -34,7 +34,7 @@ export async function draw(moviesData) {
 }
 
 function AddClicklistener() {
-  const poster = document.getElementsByClassName("poster");
+  const poster = document.querySelectorAll(".poster");
   for (let i = 0; i < poster.length; i++) {
     poster[i].addEventListener("click", () => {
       const movie = poster[i];
