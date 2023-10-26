@@ -15,7 +15,7 @@ export async function draw(moviesData) {
     <div class="poster" data-id=${movie.id}>
         <div class="card bg-dark text-white">
             <div class="movieId">${movieId}</div>
-            <img src="https://image.tmdb.org/t/p/w500${movieImg}" class="card-img posterImg" alt="movie poster image" />
+            <img src="https://image.tmdb.org/t/p/w1280${movieImg}" class="card-img posterImg" alt="movie poster image" />
             <div class="card-img-overlay posterContentsBox">
             <h5 class="card-title title">${movieTitle}</h5>
                 <div class="contentWrap">
