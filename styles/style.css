@@ -146,22 +146,6 @@ body {
   margin-bottom: 50px;
 }
 
-.detail-poster {
-  box-shadow: none;
-  width: 100%;
-  padding-right: 0;
-}
-
-.detail-poster img {
-  border-radius: 10px;
-  object-fit: cover;
-  opacity: 0.3;
-}
-/* 
-.card {
-  width: 30%;
-} */
-
 .overview {
   color: #fff;
   height: auto;
