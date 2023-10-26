@@ -1,0 +1,84 @@
+/* 승준 */
+.panSection {
+  padding: 40px 0;
+}
+/* Layouts */
+.l_wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.panel {
+  background-color: #000000ff;
+  color: #aaa;
+  position: relative;
+  z-index: 1;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /* border-top-left-radius: "value";
+      border-top-right-radius: "value";
+      border-bottom-left-radius: "value";
+      border-bottom-left-radius: "value"; */
+}
+
+.panel-cover {
+  aspect-ratio: 16/9;
+  position: relative;
+  margin-bottom: -100px;
+  z-index: -1;
+}
+
+.panel-cover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 1, 17, 0) 0%,
+    rgba(0, 1, 17, 1) 100%
+  );
+}
+
+.panel-cover-src {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.panel-main {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.panel-contents {
+  flex-basis: 0;
+  min-width: 0;
+  flex-grow: 1;
+}
+
+.panel-title {
+  color: white;
+  font-size: 4rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.panel-contents p + p {
+  margin-top: 1em;
+}
+.panel-btn {
+  text-align: Center;
+}
+
+/* Comments */
+.commentWrap {
+}

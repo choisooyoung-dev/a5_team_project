@@ -22,90 +22,10 @@
     />
     <link rel="stylesheet" href="./styles/reset.css" />
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/detail.css" />
     <title>Soovie</title>
   </head>
-  <style>
-    /* 승준 */
-    .section {
-      padding: 40px 0;
-    }
-    /* Layouts */
-    .l_wrapper {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    .panel {
-      background-color: #000000ff;
-      color: #aaa;
-      position: relative;
-      z-index: 1;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      /* border-top-left-radius: "value";
-      border-top-right-radius: "value";
-      border-bottom-left-radius: "value";
-      border-bottom-left-radius: "value"; */
-    }
 
-    .panel-cover {
-      aspect-ratio: 16/9;
-      position: relative;
-      margin-bottom: -100px;
-      z-index: -1;
-    }
-
-    .panel-cover::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 200px;
-      background-image: linear-gradient(
-        to bottom,
-        rgba(0, 1, 17, 0) 0%,
-        rgba(0, 1, 17, 1) 100%
-      );
-    }
-
-    .panel-cover-src {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    }
-
-    .panel-main {
-      padding: 20px;
-      display: flex;
-      gap: 20px;
-    }
-
-    .panel-contents {
-      flex-basis: 0;
-      min-width: 0;
-      flex-grow: 1;
-    }
-
-    .panel-title {
-      color: white;
-      font-size: 4rem;
-      margin-bottom: 20px;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-
-    .panel-contents p + p {
-      margin-top: 1em;
-    }
-    .panel-btn {
-      text-align: Center;
-    }
-  </style>
   <body>
     <nav>
       <div class="navBox">
@@ -126,10 +46,13 @@
       </div>
     </nav>
 
-    <section class="section">
+    <section class="panSection">
       <div class="l_wrapper">
         <div class="panel"></div>
       </div>
+    </section>
+    <section class="coSection">
+      <div class="commentWrap"></div>
     </section>
 
     <footer>
@@ -165,9 +88,16 @@
       // console.log(temp);
       const movieId = temp[1];
       const panel = document.querySelector(".panel");
+      const commentWrap = document.querySelector(".commentWrap");
 
-      getIdFunc();
-      async function getIdFunc() {
+      // getIdFunc() -> drawDetailFunc() 변경
+      drawDetailFunc();
+
+      // 댓글 함수 실행
+      drawCommentFunc();
+
+      // 상세페이지 그려주는 함수
+      async function drawDetailFunc() {
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/${movieId}?language=ko`,
           options
@@ -204,6 +134,74 @@
           </div>
             `;
         panel.innerHTML += addhtml;
+      }
+
+      // 리뷰 그려주는 함수
+      async function drawCommentFunc() {
+        // localStorage part
+
+        // 댓글
+        let commentAddHtml = `
+        <div class="commentsWrap">
+          <div class="comments">
+            <div class="movieId">${movieId}</div>
+            <div class="commentCount">
+              <i class="fa-solid fa-comment"></i><span>2(리뷰수)</span>
+            </div>
+            <div class="commentBox">
+              <p class="commentUser">작성자</p>
+              <span class="commentDate"> 2023-10-26 </span>
+              <p class="comment">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Architecto consectetur quo eaque animi, rem aliquid fugiat natus.
+                Temporibus provident est, cum rem beatae sapiente mollitia
+                similique quia quod eligendi labore!
+              </p>
+              <button class="btn btn-warning coUpdateBtn" type="button">
+                수정
+              </button>
+              <button class="btn btn-warning coDeleteBtn" type="button">
+                삭제
+              </button>
+            </div>
+            <div class="commentBox">
+              <p class="commentUser">작성자</p>
+              <span class="commentDate"> 2023-10-26 </span>
+              <p class="comment">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Architecto consectetur quo eaque animi, rem aliquid fugiat natus.
+                Temporibus provident est, cum rem beatae sapiente mollitia
+                similique quia quod eligendi labore!
+              </p>
+              <button class="btn btn-warning coUpdateBtn" type="button">
+                수정
+              </button>
+              <button class="btn btn-warning coDeleteBtn" type="button">
+                삭제
+              </button>
+            </div>
+
+            <div class="commentInputBox">
+              <p class="commentUser">
+                <input
+                  type="text"
+                  placeholder="이름을 입력하세요"
+                  id="username"
+                />
+              </p>
+              <span class="commentDate"> 2023-10-26 </span>
+              <p class="comment">
+                <input placeholder="리뷰를 작성해주세요" id="comment" />
+              </p>
+              <button class="btn btn-warning coSubmitBtn" type="button">
+                확인
+              </button>
+            </div>
+          </div>
+       </div>
+        `;
+
+        commentWrap.innerHTML += commentAddHtml;
       }
     </script>
   </body>
