@@ -1,309 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans:wght@200;500&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="./styles/reset.css" />
-  <link rel="stylesheet" href="./styles/style.css" />
-  <title>Soovie</title>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans:wght@200;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <title>Soovie</title>
+  </head>
   <style>
-    label {
+    /* 승준 */
+    .section {
+      padding: 40px 0;
+    }
+    /* Layouts */
+    .l_wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .panel {
+      background-color: #000000ff;
+      color: #aaa;
+      position: relative;
+      z-index: 1;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      /* border-top-left-radius: "value";
+      border-top-right-radius: "value";
+      border-bottom-left-radius: "value";
+      border-bottom-left-radius: "value"; */
+    }
+
+    .panel-cover {
+      aspect-ratio: 16/9;
+      position: relative;
+      margin-bottom: -100px;
+      z-index: -1;
+    }
+
+    .panel-cover::after {
+      content: "";
       position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      overflow: hidden;
-      white-space: nowrap;
-      border: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background-image: linear-gradient(
+        to bottom,
+        rgba(0, 1, 17, 0) 0%,
+        rgba(0, 1, 17, 1) 100%
+      );
+    }
+
+    .panel-cover-src {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .panel-main {
+      padding: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .panel-contents {
+      flex-basis: 0;
+      min-width: 0;
+      flex-grow: 1;
+    }
+
+    .panel-title {
+      color: white;
+      font-size: 4rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .panel-contents p + p {
+      margin-top: 1em;
+    }
+    .panel-btn {
+      text-align: Center;
     }
   </style>
+  <body>
+    <nav>
+      <div class="navBox">
+        <h1 class="logo">
+          <a href="./index.html" class="logo">Soovie</a>
+        </h1>
+        <form class="searchBox">
+          <input
+            class="searchInput"
+            type="text"
+            id="searchInput"
+            placeholder="Search Title"
+          />
+          <button class="searchBtn" type="button" id="searchBtn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+    </nav>
 
-</head>
+    <section class="section">
+      <div class="l_wrapper">
+        <div class="panel"></div>
+      </div>
+    </section>
 
-<body>
-  <nav>
-    <div class="navBox">
-      <h1 class="logo">
-        <a href="./index.html" class="logo">Soovie</a>
-      </h1>
-      <form class="searchBox">
-        <input class="searchInput" type="text" id="searchInput" placeholder="Search Title" />
-        <button class="searchBtn" type="button" id="searchBtn">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-      </form>
-    </div>
-  </nav>
-  <section>
-    <div class="posterBox">
-      <div class="poster detail-poster" data-id=${movieId}>
-        <div class="card bg-dark text-white">
-          <div class="movieId">${movieId}</div>
-          <img src="${movieImgSrc}" class="card-img posterImg" alt="movie poster image" />
-          <div class="card-img-overlay posterContentsBox">
-            <h5 class="card-title title">${movieTitle}</h5>
-            <div class="contentWrap">
-              <p class="card-text">
-                <i class="fa-solid fa-star star"></i>${movieRating}
-              </p>
-              <p class="card-text">
-                ${movieReleaseDate}
-              </p>
-              <p class="card-text">${movieOverview}</p>
+    <footer>
+      <div class="footerBox">
+        <div class="footerLogo"><a href="./index.html"> Soovie </a></div>
+        <div class="footerIconBox">
+          <a
+            href="https://github.com/choisooyoung-dev/a5_team_project"
+            class="git"
+            ><i class="fa-brands fa-github fooIc"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const options = {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MDUyZDk1YTU1NzM4OTZhOWUyZTRkMDZiYmFjZDkzYSIsInN1YiI6IjY1MmY2NDQ5MGNiMzM1MTZmNjQwYjlkZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V-gAyCfvw8yM8Ll7BDo1DEs9CS7vxzStmFhGra5s61g",
+        },
+      };
+
+      let temp = location.href.split("?");
+      // console.log(temp);
+      const movieId = temp[1];
+      const panel = document.querySelector(".panel");
+
+      getIdFunc();
+      async function getIdFunc() {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${movieId}?language=ko`,
+          options
+        );
+        // console.log(response);
+        // console.log(response); // Response {type: 'cors', url: 'https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', redirected: false, status: 200, ok: true, …}
+        // json(클라이언트와 서버 간의 HTTP 통신 위한 텍스트 데이터 포맷)으로 표기
+        const movieData = await response.json();
+        console.log(movieData);
+
+        const movieImgSrc = movieData.backdrop_path;
+        const movieTitle = movieData.title;
+        const movieRating = movieData.vote_average;
+        const movieReleaseDate = movieData.release_date;
+        const movieOverview = movieData.overview;
+        let addhtml = `
+        <div class="panel-cover">
+            <img
+              class="panel-cover-src"
+              src="https://image.tmdb.org/t/p/w1280${movieImgSrc}"
+              alt=""
+            />
+          </div>
+          <div class="panel-main">
+            <div class="panel-contents" style="display: block">
+              <h1 class="panel-title">${movieTitle}</h1>
+              <div>
+                <p>
+                  ${movieOverview}
+                </p>
+              </div>
+              <div class = "panel-btn"><h2>&blacktriangledown;</h2></div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="poster detail-poster" data-id=${movieId}>
-        <div class="card bg-dark text-white">
-          <div class="movieId">${movieId}</div>
-          <!-- 댓글 입력 시작-->
-          <div class="contentWrap">
-            <form id="CommentForm">
-              <p>
-                <label for="UserName" class="Bline">작성자명</label>
-                <input type="text" id="username" placeholder="작성자명">
-              </p>
-              <p>
-                <label for="password" class="blind">비밀번호 입력</label>
-                <input type="password" id="password" placeholder="비밀번호 입력" maxlength="10">
-              </p>
-              <p>
-                <label for="Comment" class="blind">댓글 작성</label>
-                <textarea id="comment" maxlength="200"></textarea>
-              </p>
-              <input type="submit" id="Add_btn" class="Add_btn" value="댓글 달기" />
-            </form>
-            <!-- <p class="card-text">
-                      작성자
-                      </p>
-                      <p class="card-text">
-                      작성일
-                      </p>
-                      <p class="card-text">
-                        댓글창
-                      </p>
-                      <p class="card-text">
-                      비밀번호
-                    </p>
-                    <button class="btn btn-warning" type="button">
-                    댓글 달기
-                  </button> -->
-          </div>
-          <!-- 댓글 입력 끝 -->
-        </div>
-      </div>
-    </div>
-    <div class="poster detail-poster" data-id=${movieId}>
-      <div class="card bg-dark text-white">
-        <div class="movieId">${movieId}</div>
-        <!-- 총 댓글 수 표시 시작 -->
-        <div class="Comment-count">
-          <div class="Comment-total">
-            <h7>총 댓글 수 (<span></span>)</h7>
-          </div>
-        </div>
-
-        <!-- 댓글 표시 시작 -->
-        <div id="CommentList">
-
-        </div>
-
-
-        <!-- <div class="contentWrap">
-          <p class="card-text">
-            최수영
-          </p>
-          <p class="card-text">
-            2023-10-25
-          </p>
-          <p class="card-text">
-            우오라왕리ㅏ농라ㅗ아ㅣ
-          </p>
-          <p class="card-text">
-            비밀번호 입력하시오
-          </p>
-          <button class="btn btn-warning" type="button">
-            수정
-          </button>
-          <button class="btn btn-warning" type="button">
-            삭제
-          </button>
-        </div> -->
-        <!-- 댓글 표시 끝 -->
-      </div>
-    </div>
-    </div>
-    </div>
-
-    <!-- Back btn -->
-    <button class="btn btn-warning viewMoreBtn" type="button">Back</button>
-    <button class="btn btn-warning viewMoreBtn" type="button" id="searchMoreBtn" style="display: none">
-      Search View More
-    </button>
-    <button class="btn btn-warning backBtn none" type="button" id="back">
-      <a href="./index.html">Back</a>
-    </button>
-  </section>
-
-  <footer>
-    <div class="footerBox">
-      <div class="footerLogo"><a href="./index.html"> Soovie </a></div>
-      <div class="footerIconBox">
-        <a href="https://github.com/choisooyoung-dev/a5_team_project" class="git"><i
-            class="fa-brands fa-github fooIc"></i></a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-    crossorigin="anonymous"></script> -->
-  <!-- <script type="module" src="js/app.js"></script>
-    <script type="module" src="js/Search.js"></script> -->
-  <!-- <script defer src="./js/detail.js"></script> -->
-
-  <script>
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MDUyZDk1YTU1NzM4OTZhOWUyZTRkMDZiYmFjZDkzYSIsInN1YiI6IjY1MmY2NDQ5MGNiMzM1MTZmNjQwYjlkZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V-gAyCfvw8yM8Ll7BDo1DEs9CS7vxzStmFhGra5s61g",
-      },
-    };
-
-    // let temp = location.href.split("?");
-    // let movieId = temp[1];
-
-    getIdFunc();
-    async function getIdFunc() {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}?language=ko`,
-        options
-      );
-      // console.log(response);
-      // console.log(response); // Response {type: 'cors', url: 'https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', redirected: false, status: 200, ok: true, …}
-      // json(클라이언트와 서버 간의 HTTP 통신 위한 텍스트 데이터 포맷)으로 표기
-      const movieData = await response.json();
-      console.log(movieData);
-    }
-
-    const COMMENTFORM = document.getElementById('CommentForm');
-    const COMMENTLIST = document.getElementById('CommentList');
-    const COMMENTTOTAL = document.querySelector("h7 > span");
-    const MOVIEID = GetMovieId();
-
-    // 페이지 로드시에 아래 함수 실행
-    window.onload = function () {
-      // 화면에 댓글 표시
-      DisplayComments();
-      // 총 댓글 수 표시
-      Total()
-    }
-
-    COMMENTFORM.addEventListener("submit", WriteComment);
-    COMMENTLIST.addEventListener("click", function (event) {
-      if (event.target.classList.contains("Del_btn")) {
-        DeleteComment();
+            `;
+        panel.innerHTML += addhtml;
       }
-    });
-
-    // 댓글 작성하기
-    function WriteComment(event) {
-      event.preventDefault();
-
-      let username = document.getElementById('username').value;
-      let password = document.getElementById('password').value;
-      let comment = document.getElementById('comment').value;
-      let comments = GetCommentFromMovieID(MOVIEID);
-      comments.push({ username, password, comment });
-      SetCommentFromMovieID(MOVIEID, comments);
-      // 입력내용 비우기
-      COMMENTFORM.reset();
-      DisplayComments()
-      Total()
-
-    }
-
-    // 댓글 삭제하기
-    function DeleteComment() {
-      let comments = GetCommentFromMovieID(MOVIEID);
-
-      // 유저로부터 입력값을 받을수 있고 문구를 띄운다.
-      let password = prompt("비밀번호를 입력해주세요.");
-
-      // 비밀번호 일치여부 체크
-      let checkpassword = comments.find(comments => comments.password === password);
-
-      if (checkpassword) {
-        // 비밀번호가 일치하는 댓글을 제외시키고 업데이트된 댓글 목록 생성
-        let updatecomment = comments.filter(comments => comments !== checkpassword)
-        SetCommentFromMovieID(MOVIEID, updatecomment)
-        DisplayComments()
-        Total()
-      }
-      else {
-        alert("비밀번호를 확인해주세요.");
-      }
-    }
-
-    // 댓글 표시하기
-    function DisplayComments() {
-      COMMENTLIST.innerHTML = "";
-      let comments = GetCommentFromMovieID(MOVIEID);
-
-      comments.forEach(element => {
-        let comment_element = document.createElement('div');
-        comment_element.innerHTML = `
-    <p>${element.username}</p>
-    <p>${element.comment}</p>
-    <button id="Del_btn" class="btn btn-warning Del_btn" type="button">삭제</button>
-    `;
-
-        COMMENTLIST.appendChild(comment_element);
-      });
-    }
-
-    // 총 댓글 수 표시하기
-    function Total() {
-      let comments = GetCommentFromMovieID(MOVIEID);
-      COMMENTTOTAL.innerText = comments.length;
-    }
-
-    // 영화 id 추출하기
-    function GetMovieId() {
-      let temp = location.href.split("?");
-      let movieId = temp[1];
-      return movieId;
-    }
-
-    // 영화 id를 기반으로 해당 영화 댓글 가져오기
-    function GetCommentFromMovieID(MOVIEID) {
-      // 해당하는 영화 localStorage에 빈배열 생성
-      if (localStorage.getItem(`${MOVIEID}`) === null) {
-        localStorage.setItem(`${MOVIEID}`, JSON.stringify([]));
-      }
-
-      return JSON.parse(localStorage.getItem(`${MOVIEID}`));
-    }
-
-    // 해당 영화id localStorage에 댓글 저장하기
-    function SetCommentFromMovieID(MOVIEID, comments) {
-      localStorage.setItem(`${MOVIEID}`, JSON.stringify(comments))
-    }
-
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

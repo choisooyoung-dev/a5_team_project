@@ -1,8 +1,7 @@
 // 영화 카드 하나하나 그려주는 funtion
 export async function draw(moviesData) {
   const posterBox = document.querySelector(".posterBox");
-  posterBox.innerHTML = "";
-
+  // posterBox.innerHTML = "" 이것 때문에 append안되고 새로 만들어짐
   moviesData.forEach((movie) => {
     // const poster = document.querySelector(".poster");
     const movieId = movie.id;
@@ -16,7 +15,7 @@ export async function draw(moviesData) {
     <div class="poster" data-id=${movie.id}>
         <div class="card bg-dark text-white">
             <div class="movieId">${movieId}</div>
-            <img src="https://image.tmdb.org/t/p/w500${movieImg}" class="card-img posterImg" alt="movie poster image" />
+            <img src="https://image.tmdb.org/t/p/w1280${movieImg}" class="card-img posterImg" alt="movie poster image" />
             <div class="card-img-overlay posterContentsBox">
             <h5 class="card-title title">${movieTitle}</h5>
                 <div class="contentWrap">
