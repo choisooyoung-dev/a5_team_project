@@ -24,13 +24,11 @@
     <link rel="stylesheet" href="./styles/style.css" />
     <title>Soovie</title>
   </head>
-
+  <style></style>
   <body>
     <nav>
       <div class="navBox">
-        <h1 class="logo">
-          <a href="./index.html" class="logo"></a>
-        </h1>
+        <h1 class="logo"></h1>
         <form class="searchBox">
           <input
             class="searchInput"
@@ -110,9 +108,11 @@
     <script type="module" src="js/Search.js"></script>
     <script>
       const logo = document.querySelector(".logo");
-      const logoTitleStr = "Soovie";
+      logo.addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+      const logoTitleStr = "같이고민하조";
       const logoTitleWorld = logoTitleStr.split("");
-      console.log(logoTitleWorld);
 
       function strTyping(arr) {
         if (arr.length > 0) {
