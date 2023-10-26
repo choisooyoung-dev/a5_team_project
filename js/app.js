@@ -8,9 +8,6 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MDUyZDk1YTU1NzM4OTZhOWUyZTRkMDZiYmFjZDkzYSIsInN1YiI6IjY1MmY2NDQ5MGNiMzM1MTZmNjQwYjlkZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V-gAyCfvw8yM8Ll7BDo1DEs9CS7vxzStmFhGra5s61g",
   },
 };
-// 페이지 수(초기값)
-let count = 1;
-let category = "top_rated";
 
 async function showMovie(category, count) {
   // 별점순 영화 데이터 20개 가져오기
@@ -18,7 +15,7 @@ async function showMovie(category, count) {
     `https://api.themoviedb.org/3/movie/${category}?language=ko&page=${count}`,
     options
   );
-  console.log(response);
+  // console.log(response);
   // console.log(response); // Response {type: 'cors', url: 'https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', redirected: false, status: 200, ok: true, …}
   // json(클라이언트와 서버 간의 HTTP 통신 위한 텍스트 데이터 포맷)으로 표기
   const jsonData = await response.json();
@@ -28,36 +25,72 @@ async function showMovie(category, count) {
   // 영화 카드 그려주기
   draw(moviesData);
 }
-clickViewBtn();
-showMovie(category, count);
-switchCategory();
 
 async function clickViewBtn() {
   const viewBtn = document.querySelector(".viewMoreBtn");
   viewBtn.addEventListener("click", function viewBtnClick(e) {
     e.preventDefault();
     count++;
+    console.log(count);
     showMovie(category, count);
     // console.log(count);
     if (count === 5) {
-      viewBtn.classList.add("none");
+      // viewBtn.classList.add("none");
+      viewBtn.style.display = "none";
+      return;
     }
   });
 }
-
-async function switchCategory() {
-  const ratingBtn = document.getElementById("ratingBtn");
+// 클릭이벤트 2개로 나누니 잘 작동함
+// error
+// 인기순이나 별점순 morebtn끝까지누르면 버튼이사라짐
+// 근데 인기순 눌러도 버튼이 안생김
+// async function switchCategory() {
+//   const ratingBtn = document.getElementById("ratingBtn");
+//   const popularBtn = document.getElementById("popularBtn");
+//   ratingBtn.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     category = "top_rated";
+//     // console.log(category);
+//     showMovie(category, count);
+//   });
+//   popularBtn.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     category = "popular";
+//     // console.log(category);
+//     showMovie(category, count);
+//   });
+// }
+function PopularityButton() {
   const popularBtn = document.getElementById("popularBtn");
-  ratingBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    category = "top_rated";
-    // console.log(category);
-    showMovie(category, count);
-  });
   popularBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    // document.querySelector(".viewMoreBtn").classList.add("block");
+    document.querySelector(".viewMoreBtn").style.display = "block";
+    document.querySelector(".posterBox").innerHTML = "";
     category = "popular";
-    // console.log(category);
+    count = 1;
     showMovie(category, count);
   });
 }
+function RatingButton() {
+  const popularBtn = document.getElementById("ratingBtn");
+  popularBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    // document.querySelector(".viewMoreBtn").classList.add("block");
+    document.querySelector(".viewMoreBtn").style.display = "block";
+    document.querySelector(".posterBox").innerHTML = "";
+    category = "top_rated";
+    count = 1;
+    showMovie(category, count);
+  });
+}
+// 페이지 수(초기값)
+let count = 1;
+let category = "top_rated";
+
+showMovie(category, count);
+clickViewBtn();
+// switchCategory();
+PopularityButton();
+RatingButton();

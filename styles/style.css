@@ -15,7 +15,6 @@ body {
   align-items: center;
   background-color: #181818;
 }
-
 .logo {
   color: #e9b802;
   cursor: pointer;
@@ -25,14 +24,13 @@ body {
   align-items: center;
   font-family: "Black Han Sans", sans-serif;
   /* background-color: #e9b702c3; */
-  width: 150px;
+  width: 350px;
   height: 70px;
   text-align: center;
   border-radius: 10px;
   font-size: 30px;
   transition: all 0.3s ease-out;
 }
-
 /* .logo:hover {
   background-color: #e9b802;
   color: #181818;

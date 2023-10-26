@@ -22,16 +22,14 @@ async function SearchMovie() {
   const encodedText = encodeURIComponent(inputData);
 
   if (inputData == "") {
-    alert("값을 입력하시오");
+    alert("Please Enter Value");
     return;
-  } else if (/[!@#$%^&*()_+\-=,.<>/?~`{}]/.test(inputData)) {
-    alert("특수문자X");
-    return;
-  } else if (inputData.includes("]")) {
-    alert("특수문자X");
-    return;
-  } else if (inputData.includes("[")) {
-    alert("특수문자X");
+  } else if (
+    /[!@#$%^&*()_+\-=,.<>/?~`{}]/.test(inputData) ||
+    inputData.includes("]") ||
+    inputData.includes("[")
+  ) {
+    alert("No Special Characters");
     return;
   }
 
@@ -65,7 +63,7 @@ async function SearchMovie() {
   let end = 20;
   let cut = filterCollection.slice(start, end);
   if (cut.length === 0) {
-    alert("데이터가 없습니다");
+    alert("데이터가 없어용");
     return;
   } else if (cut.length < 20) {
     posterBox.innerHTML = "";
@@ -81,20 +79,19 @@ async function SearchMovie() {
     start += 20;
     end += 20;
     let ccut = filterCollection.slice(start, end);
-    if (ccut.length === 0) {
-      alert("데이터가 없습니다");
-      return;
-    } else if (ccut.length < 20) {
+    if (ccut.length < 20) {
       draw(ccut);
       searchMoreBtn.style.display = "none";
+      searchInput.focus();
     } else if (ccut.length === 20) {
       searchMoreBtn.style.display = "block";
       draw(ccut);
+    } else if (ccut.length === 0) {
+      return;
     }
   });
 
   searchInput.value = null;
-  searchInput.focus();
 }
 
 function ClickBtn() {
