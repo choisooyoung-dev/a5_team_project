@@ -86,8 +86,8 @@ body {
   padding-right: 20px;
   color: #fff;
   width: 20%;
-  /* width: 500px; */
-  /* height: 600px; */
+  /* width: 500px;
+  height: 600px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,10 +157,10 @@ body {
   object-fit: cover;
   opacity: 0.3;
 }
-
+/* 
 .card {
   width: 30%;
-}
+} */
 
 .overview {
   color: #fff;
