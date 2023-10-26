@@ -90,7 +90,9 @@
       };
 
       let temp = location.href.split("?");
-      let movieId = temp[1];
+      // console.log(temp);
+      const movieId = temp[1];
+      const posterBox = document.querySelector(".posterBox");
 
       getIdFunc();
       async function getIdFunc() {
@@ -103,6 +105,36 @@
         // json(클라이언트와 서버 간의 HTTP 통신 위한 텍스트 데이터 포맷)으로 표기
         const movieData = await response.json();
         console.log(movieData);
+
+        const movieImgSrc = movieData.backdrop_path;
+        console.lo;
+        const movieTitle = movieData.title;
+        const movieRating = movieData.vote_average;
+        const movieReleaseDate = movieData.release_date;
+        const movieOverview = movieData.overview;
+        let addhtml = `
+            <div class="poster detail-poster" data-id=${movieId}>
+                <div class="card bg-dark text-white">
+                    <div class="movieId">${movieId}</div>
+                        <img src="https://image.tmdb.org/t/p/w500${movieImgSrc}" class="card-img posterImg" alt="movie poster image" />
+                        <div class="card-img-overlay posterContentsBox">
+                        <h5 class="card-title title">${movieTitle}</h5>
+                        <div class="contentWrap">
+                            <p class="card-text">
+                            <i class="fa-solid fa-star star"></i>${movieRating}
+                            </p>
+                            <p class="card-text">
+                            ${movieReleaseDate}
+                            </p>
+                            <p class="card-text">${movieOverview}</p>
+                        </div>
+                        <i class="fa-solid fa-comment"></i>
+                    </div>
+                </div>
+            </div>
+            
+            `;
+        posterBox.innerHTML += addhtml;
       }
     </script>
   </body>

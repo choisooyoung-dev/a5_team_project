@@ -127,12 +127,13 @@ body {
 .posterImg {
   border-radius: 10px;
   width: 100%;
-  height: 450px;
+  height: 550px;
   object-fit: cover;
   opacity: 0.3;
 }
 
-.posterContentsBox {
+.posterContentsBox,
+detailContents {
   display: flex;
   flex-direction: column;
   color: #fff;
@@ -148,7 +149,7 @@ body {
 
 .detail-poster {
   box-shadow: none;
-  width: 70%;
+  width: 100%;
   padding-right: 0;
 }
 
@@ -156,6 +157,9 @@ body {
   border-radius: 10px;
   object-fit: cover;
   opacity: 0.3;
+}
+.card {
+  width: 30%;
 }
 
 .overview {
