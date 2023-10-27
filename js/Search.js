@@ -46,7 +46,7 @@ async function SearchMovie() {
   let end = 20;
   let cut = filterCollection.slice(start, end);
   if (cut.length === 0) {
-    alert("데이터가 없어용");
+    alert("NO Search Results");
     return;
   } else if (cut.length < 20) {
     posterBox.innerHTML = "";
@@ -126,7 +126,11 @@ EnterBtn();
 let urlParams = new URLSearchParams(window.location.search);
 // 파라미터중  value를 가져온다 ex)?query=asd >>asd부분을 가져온다 이때 query = key  asd = value
 let query = urlParams.get("query");
-
-if (query != null) {
-  SearchMovie();
+let path = window.location.pathname;
+if (path === "/search.html") {
+  if (query != null) {
+    SearchMovie();
+  } else if (query === null) {
+    alert("wrong approach");
+  }
 }
