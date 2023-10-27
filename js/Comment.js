@@ -3,28 +3,23 @@ const COMMENTLIST = document.getElementById('CommentList');
 const COMMENTTOTAL = document.querySelector("h7 > span");
 const MOVIEID = GetMovieId();
 
-// API
-// const options = {
-//   method: "GET",
-//   headers: {
-//     accept: "application/json",
-//     Authorization:
-//       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MDUyZDk1YTU1NzM4OTZhOWUyZTRkMDZiYmFjZDkzYSIsInN1YiI6IjY1MmY2NDQ5MGNiMzM1MTZmNjQwYjlkZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V-gAyCfvw8yM8Ll7BDo1DEs9CS7vxzStmFhGra5s61g",
-//   },
-// };
-
 // 페이지 로드시에 아래 함수 실행
 window.onload = function () {
     // 화면에 댓글 표시
     DisplayComments();
     // 총 댓글 수 표시
-    Total()
+    Total();
 }
 
 COMMENTFORM.addEventListener("submit", WriteComment);
 COMMENTLIST.addEventListener("click", function (event) {
     if (event.target.classList.contains("Del_btn")) {
         DeleteComment();
+    }
+});
+COMMENTLIST.addEventListener("click", function (event) {
+    if (event.target.classList.contains("Edit_btn")) {
+        EditComment();
     }
 });
 
@@ -35,13 +30,27 @@ function WriteComment(event) {
     let username = document.getElementById('username').value;
     let password = document.getElementById('password').value;
     let comment = document.getElementById('comment').value;
+
+    // 빈값 데이터 유효성검사
+    if (username === "" || password === "" || comment === "") {
+        alert("이름, 비밀번호, 리뷰중 빈곳이 있습니다.");
+        return;
+    }
+
+    // 작성일자
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let date = today.getDate();
+    let dateWritten = (year + '-' + month + '-' + date);
+
     let comments = GetCommentFromMovieID(MOVIEID);
-    comments.push({ username, password, comment });
+    comments.push({ username, password, comment, dateWritten });
     SetCommentFromMovieID(MOVIEID, comments);
     // 입력내용 비우기
     COMMENTFORM.reset();
-    DisplayComments()
-    Total()
+    DisplayComments();
+    Total();
 
 }
 
@@ -52,19 +61,51 @@ function DeleteComment() {
     // 유저로부터 입력값을 받을수 있고 문구를 띄운다.
     let password = prompt("비밀번호를 입력해주세요.");
 
-    // 비밀번호 일치여부 체크
-    let checkpassword = comments.find(comments => comments.password === password);
+    // 비밀번호 일치여부 체크 및 해당 댓글 식별
+    let checkcomment = comments.find(comments => comments.password === password);
 
-    if (checkpassword) {
+    if (checkcomment) {
         // 비밀번호가 일치하는 댓글을 제외시키고 업데이트된 댓글 목록 생성
-        let updatecomment = comments.filter(comments => comments !== checkpassword)
-        SetCommentFromMovieID(MOVIEID, updatecomment)
-        DisplayComments()
-        Total()
+        let updatecomment = comments.filter(comments => comments !== checkcomment)
+        SetCommentFromMovieID(MOVIEID, updatecomment);
+        DisplayComments();
+        Total();
     }
     else {
         alert("비밀번호를 확인해주세요.");
     }
+}
+
+// 댓글 수정하기
+function EditComment() {
+    let comments = GetCommentFromMovieID(MOVIEID);
+
+     // 유저로부터 입력값을 받을수 있고 문구를 띄운다.
+     let password = prompt("비밀번호를 입력해주세요.");
+
+     // 비밀번호 일치여부 체크 및 해당 댓글 식별
+     let checkcomment = comments.find(comments => comments.password === password);
+ 
+     if (checkcomment) {
+        // 해당 댓글 인덱스값 
+        let index = comments.indexOf(checkcomment);
+
+        let editcomment = prompt("새 댓글 내용을 입력해주세요."); 
+        // 빈값 데이터 유효성 검사
+        if (editcomment === "") {
+            alert("공백을 입력할 수 없습니다.");
+            return;
+        }
+        //  댓글 내용 수정
+        comments[index].comment = editcomment;
+
+        SetCommentFromMovieID(MOVIEID, comments);
+        DisplayComments();
+        Total();
+     }
+     else {
+         alert("비밀번호를 확인해주세요.");
+     }
 }
 
 // 댓글 표시하기
@@ -75,10 +116,12 @@ function DisplayComments() {
     comments.forEach(element => {
         let comment_element = document.createElement('div');
         comment_element.innerHTML = `
-    <p>${element.username}</p>
-    <p>${element.comment}</p>
-    <button id="Del_btn" class="btn btn-warning Del_btn" type="button">삭제</button>
-    `;
+                <p class="commentUser">${element.username}</p>
+                <p class="comment">${element.comment}</p>
+                <p class="commentDate"> 작성일자 : ${element.dateWritten} </p>
+                <button id="Del_btn" class="btn btn-warning Del_btn" type="button">삭제</button>
+                <button id="Edit_btn" class="btn btn-warning Edit_btn" type="button">수정</button>
+                `;
 
         COMMENTLIST.appendChild(comment_element);
     });
@@ -109,5 +152,5 @@ function GetCommentFromMovieID(MOVIEID) {
 
 // 해당 영화id localStorage에 댓글 저장하기
 function SetCommentFromMovieID(MOVIEID, comments) {
-    localStorage.setItem(`${MOVIEID}`, JSON.stringify(comments))
+    localStorage.setItem(`${MOVIEID}`, JSON.stringify(comments));
 }
