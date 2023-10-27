@@ -1,5 +1,5 @@
 const COMMENTFORM = document.getElementById('CommentForm');
-const COMMENTLIST = document.getElementById('CommentList');
+const COMMENTLIST = document.getElementById('CommentList'); 
 const COMMENTTOTAL = document.querySelector("h7 > span");
 const MOVIEID = GetMovieId();
 
@@ -110,12 +110,15 @@ function DisplayComments() {
     comments.forEach((element, index) => {
         let comment_element = document.createElement('div');
         comment_element.innerHTML = `
-                <p class="commentUser">${element.username}</p>
-                <p class="comment">${element.comment}</p>
-                <p class="commentDate"> 작성일자 : ${element.dateWritten} </p>
-                <button id="Del_btn" class="btn btn-warning Del_btn" type="button" onclick="DeleteComment(${index})">삭제</button>
-                <button id="Edit_btn" class="btn btn-warning Edit_btn" type="button" onclick="EditComment(${index})">수정</button>
-                <hr></hr>
+                <div class="commentBox">
+                    <p class="commentUser">${element.username}</p>
+                    <p class="comment">${element.comment}</p>
+                    <span class="commentDate"> 작성일자 : ${element.dateWritten} </span>
+                    <div class="commentBtnWrap">
+                    <button id="Del_btn" class="btn btn-warning Del_btn" type="button" onclick="DeleteComment(${index})">삭제</button>
+                    <button id="Edit_btn" class="btn btn-warning Edit_btn" type="button" onclick="EditComment(${index})">수정</button>
+                    </div>
+                </div>
                 `;
 
         COMMENTLIST.appendChild(comment_element);
