@@ -12,16 +12,6 @@ window.onload = function () {
 }
 
 COMMENTFORM.addEventListener("submit", WriteComment);
-COMMENTLIST.addEventListener("click", function (event) {
-    if (event.target.classList.contains("Del_btn")) {
-        DeleteComment();
-    }
-});
-COMMENTLIST.addEventListener("click", function (event) {
-    if (event.target.classList.contains("Edit_btn")) {
-        EditComment();
-    }
-});
 
 // 댓글 작성하기
 function WriteComment(event) {
@@ -55,19 +45,19 @@ function WriteComment(event) {
 }
 
 // 댓글 삭제하기
-function DeleteComment() {
+function DeleteComment(index) {
     let comments = GetCommentFromMovieID(MOVIEID);
 
     // 유저로부터 입력값을 받을수 있고 문구를 띄운다.
     let password = prompt("비밀번호를 입력해주세요.");
 
-    // 비밀번호 일치여부 체크 및 해당 댓글 식별
-    let checkcomment = comments.find(comments => comments.password === password);
+    // 비밀번호 일치여부 체크
+    let checkpassword = (comments[index].password === password);
 
-    if (checkcomment) {
-        // 비밀번호가 일치하는 댓글을 제외시키고 업데이트된 댓글 목록 생성
-        let updatecomment = comments.filter(comments => comments !== checkcomment)
-        SetCommentFromMovieID(MOVIEID, updatecomment);
+    if (checkpassword) {
+        // 해당하는 댓글을 삭제한다.
+        comments.splice(index, 1);
+        SetCommentFromMovieID(MOVIEID, comments);
         DisplayComments();
         Total();
     }
@@ -77,35 +67,39 @@ function DeleteComment() {
 }
 
 // 댓글 수정하기
-function EditComment() {
+function EditComment(index) {
     let comments = GetCommentFromMovieID(MOVIEID);
 
-     // 유저로부터 입력값을 받을수 있고 문구를 띄운다.
-     let password = prompt("비밀번호를 입력해주세요.");
+    // 유저로부터 입력값을 받을수 있고 문구를 띄운다.
+    let password = prompt("비밀번호를 입력해주세요.");
 
-     // 비밀번호 일치여부 체크 및 해당 댓글 식별
-     let checkcomment = comments.find(comments => comments.password === password);
- 
-     if (checkcomment) {
-        // 해당 댓글 인덱스값 
-        let index = comments.indexOf(checkcomment);
+    // 비밀번호 일치여부 체크
+    let checkpassword = (comments[index].password === password);
 
-        let editcomment = prompt("새 댓글 내용을 입력해주세요."); 
+    if (checkpassword) {
+        let editcomment = prompt("새 댓글 내용을 입력해주세요.");
         // 빈값 데이터 유효성 검사
         if (editcomment === "") {
             alert("공백을 입력할 수 없습니다.");
             return;
         }
+
+        // 취소를 누를시에 기존 댓글 유지
+        if (editcomment === null) {
+            alert("수정을 취소합니다.");
+            return;
+        }
+
         //  댓글 내용 수정
         comments[index].comment = editcomment;
 
         SetCommentFromMovieID(MOVIEID, comments);
         DisplayComments();
         Total();
-     }
-     else {
-         alert("비밀번호를 확인해주세요.");
-     }
+    }
+    else {
+        alert("비밀번호를 확인해주세요.");
+    }
 }
 
 // 댓글 표시하기
@@ -113,14 +107,15 @@ function DisplayComments() {
     COMMENTLIST.innerHTML = "";
     let comments = GetCommentFromMovieID(MOVIEID);
 
-    comments.forEach(element => {
+    comments.forEach((element, index) => {
         let comment_element = document.createElement('div');
         comment_element.innerHTML = `
                 <p class="commentUser">${element.username}</p>
                 <p class="comment">${element.comment}</p>
                 <p class="commentDate"> 작성일자 : ${element.dateWritten} </p>
-                <button id="Del_btn" class="btn btn-warning Del_btn" type="button">삭제</button>
-                <button id="Edit_btn" class="btn btn-warning Edit_btn" type="button">수정</button>
+                <button id="Del_btn" class="btn btn-warning Del_btn" type="button" onclick="DeleteComment(${index})">삭제</button>
+                <button id="Edit_btn" class="btn btn-warning Edit_btn" type="button" onclick="EditComment(${index})">수정</button>
+                <hr></hr>
                 `;
 
         COMMENTLIST.appendChild(comment_element);
