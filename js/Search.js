@@ -126,11 +126,8 @@ EnterBtn();
 let urlParams = new URLSearchParams(window.location.search);
 // 파라미터중  value를 가져온다 ex)?query=asd >>asd부분을 가져온다 이때 query = key  asd = value
 let query = urlParams.get("query");
-let path = window.location.pathname;
-if (path === "/search.html") {
-  if (query != null) {
-    SearchMovie();
-  } else if (query === null) {
-    alert("wrong approach");
-  }
+if (query != null) {
+  SearchMovie();
+} else if (query === null) {
+  alert("wrong approach");
 }
