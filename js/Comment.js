@@ -91,11 +91,19 @@ function EditComment() {
         let index = comments.indexOf(checkcomment);
 
         let editcomment = prompt("새 댓글 내용을 입력해주세요."); 
+        
         // 빈값 데이터 유효성 검사
         if (editcomment === "") {
             alert("공백을 입력할 수 없습니다.");
             return;
         }
+
+        // 취소를 누를시에 기존 댓글 유지
+        if (editcomment === null) {
+            alert("수정을 취소합니다.");
+            return;
+        }
+
         //  댓글 내용 수정
         comments[index].comment = editcomment;
 
