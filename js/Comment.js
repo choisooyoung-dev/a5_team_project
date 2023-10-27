@@ -121,6 +121,7 @@ function DisplayComments() {
                 <p class="commentDate"> 작성일자 : ${element.dateWritten} </p>
                 <button id="Del_btn" class="btn btn-warning Del_btn" type="button">삭제</button>
                 <button id="Edit_btn" class="btn btn-warning Edit_btn" type="button">수정</button>
+                <hr></hr>
                 `;
 
         COMMENTLIST.appendChild(comment_element);
