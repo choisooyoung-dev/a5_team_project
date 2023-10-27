@@ -138,3 +138,8 @@
 .commentBox:last-child {
   margin-bottom: 0px;
 }
+
+.commentBtn {
+  cursor: pointer;
+  width: 25px;
+}
