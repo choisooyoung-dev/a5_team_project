@@ -51,10 +51,12 @@
         <div class="panel"></div>
       </div>
     </section>
-    <section class="coSection">
+    <section class="coSection" style="display: none">
       <div class="commentWrap"></div>
     </section>
-
+    <button class="btn btn-warning backBtn" type="button" id="back">
+      <a href="./index.html">Back</a>
+    </button>
     <footer>
       <div class="footerBox">
         <div class="footerLogo"><a href="./index.html"> Soovie </a></div>
@@ -130,11 +132,24 @@
                 </p>
               </div>
               <!-- <div class = "panel-btn"><h2>&blacktriangledown;</h2></div> -->
-              <div class="panel-btn commentCount"><i class="fa-solid fa-comment"></i></div>
+              <div id="commentBtn" class="panel-btn commentCount"><i class="fa-solid fa-comment "></i></div>
             </div>
           </div>
             `;
         panel.innerHTML += addhtml;
+
+        const commentBtn = document.getElementById("commentBtn");
+        console.log(commentBtn);
+        const coSection = document.querySelector(".coSection");
+        commentBtn.addEventListener("click", (e) => {
+          e.preventDefault;
+
+          if (coSection.style.display === "none") {
+            coSection.style.display = "flex";
+          } else {
+            coSection.style.display = "none";
+          }
+        });
       }
 
       // 리뷰 그려주는 함수
