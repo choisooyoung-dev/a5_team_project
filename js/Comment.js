@@ -13,6 +13,59 @@ window.onload = function () {
 
 COMMENTFORM.addEventListener("submit", WriteComment);
 
+// 댓글 작성하기
+function WriteComment(event) {
+    event.preventDefault();
+
+    let username = document.getElementById('username').value;
+    let password = document.getElementById('password').value;
+    let comment = document.getElementById('comment').value;
+
+    // 빈값 데이터 유효성검사
+    if (username === "" || password === "" || comment === "") {
+        alert("이름, 비밀번호, 리뷰중 빈곳이 있습니다.");
+        return;
+    }
+
+    // 작성일자
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let date = today.getDate();
+    let dateWritten = (year + '-' + month + '-' + date);
+
+    let comments = GetCommentFromMovieID(MOVIEID);
+    comments.push({ username, password, comment, dateWritten });
+    SetCommentFromMovieID(MOVIEID, comments);
+    // 입력내용 비우기
+    COMMENTFORM.reset();
+    DisplayComments();
+    Total();
+
+}
+
+// 댓글 삭제하기
+function DeleteComment(index) {
+    let comments = GetCommentFromMovieID(MOVIEID);
+
+    // 유저로부터 입력값을 받을수 있고 문구를 띄운다.
+    let password = prompt("비밀번호를 입력해주세요.");
+
+    // 비밀번호 일치여부 체크
+    let checkpassword = (comments[index].password === password);
+
+    if (checkpassword) {
+        // 해당하는 댓글을 삭제한다.
+        comments.splice(index, 1);
+        SetCommentFromMovieID(MOVIEID, comments);
+        DisplayComments();
+        Total();
+    }
+    else {
+        alert("비밀번호를 확인해주세요.");
+    }
+}
+
 // 댓글 수정하기
 function EditComment(index) {
     let comments = GetCommentFromMovieID(MOVIEID);
