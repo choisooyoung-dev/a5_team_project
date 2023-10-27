@@ -128,6 +128,4 @@ let urlParams = new URLSearchParams(window.location.search);
 let query = urlParams.get("query");
 if (query != null) {
   SearchMovie();
-} else if (query === null) {
-  alert("wrong approach");
 }
