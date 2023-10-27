@@ -23,15 +23,13 @@
     <link rel="stylesheet" href="./styles/reset.css" />
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/detail.css" />
-    <title>Soovie</title>
+    <title>Collavie</title>
   </head>
 
   <body>
     <nav>
       <div class="navBox">
-        <h1 class="logo">
-          <a href="./index.html" class="logo">Soovie</a>
-        </h1>
+        <h1 class="logo"></h1>
         <form class="searchBox">
           <input
             class="searchInput"
@@ -51,13 +49,15 @@
         <div class="panel"></div>
       </div>
     </section>
-    <section class="coSection">
+    <section class="coSection" style="display: none">
       <div class="commentWrap"></div>
     </section>
-
+    <button class="btn btn-warning backBtn" type="button" id="back">
+      <a href="./index.html">Back</a>
+    </button>
     <footer>
       <div class="footerBox">
-        <div class="footerLogo"><a href="./index.html"> Soovie </a></div>
+        <h3 class="logo" id="move-footer"></h3>
         <div class="footerIconBox">
           <a
             href="https://github.com/choisooyoung-dev/a5_team_project"
@@ -73,7 +73,7 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
-
+    <script src="js/logo,footer.js"></script>
     <script>
       const options = {
         method: "GET",
@@ -130,11 +130,24 @@
                 </p>
               </div>
               <!-- <div class = "panel-btn"><h2>&blacktriangledown;</h2></div> -->
-              <div class="panel-btn commentCount"><i class="fa-solid fa-comment"></i></div>
+              <div id="commentBtn" class="panel-btn commentCount"><i class="fa-solid fa-comment "></i></div>
             </div>
           </div>
             `;
         panel.innerHTML += addhtml;
+
+        const commentBtn = document.getElementById("commentBtn");
+        console.log(commentBtn);
+        const coSection = document.querySelector(".coSection");
+        commentBtn.addEventListener("click", (e) => {
+          e.preventDefault;
+
+          if (coSection.style.display === "none") {
+            coSection.style.display = "flex";
+          } else {
+            coSection.style.display = "none";
+          }
+        });
       }
 
       // 리뷰 그려주는 함수
