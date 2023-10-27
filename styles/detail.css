@@ -17,10 +17,6 @@
   border-bottom-right-radius: 10px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  /* border-top-left-radius: "value";
-      border-top-right-radius: "value";
-      border-bottom-left-radius: "value";
-      border-bottom-left-radius: "value"; */
 }
 
 .panel-cover {
@@ -80,5 +76,62 @@
 }
 
 /* Comments */
+.coSection {
+  border-radius: 10px;
+  background-color: #000;
+  color: #fff;
+  width: 48%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+  margin-bottom: 100px;
+  padding: 50px;
+}
+
 .commentWrap {
+}
+
+.commentCount {
+  font-size: 25px;
+  padding-top: 25px;
+  margin-bottom: 30px;
+  color: #e9b802;
+}
+
+.commentInputBox {
+  padding-top: 10px;
+  border-top: 1px solid #aaa;
+}
+
+.commentInputBox input {
+  color: #fff;
+  padding-top: 20px;
+  width: 100%;
+}
+
+.commentBox {
+  margin-bottom: 50px;
+}
+
+.commentBox button {
+  text-align: center;
+}
+
+.commentUser input {
+  width: 100%;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 10px;
+}
+
+.comment textarea {
+  color: #fff;
+  margin-top: 20px;
+  width: 100%;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 10px;
+}
+
+.commentBox:last-child {
+  margin-bottom: 0px;
 }

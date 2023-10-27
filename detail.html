@@ -129,7 +129,8 @@
                   ${movieOverview}
                 </p>
               </div>
-              <div class = "panel-btn"><h2>&blacktriangledown;</h2></div>
+              <!-- <div class = "panel-btn"><h2>&blacktriangledown;</h2></div> -->
+              <div class="panel-btn commentCount"><i class="fa-solid fa-comment"></i></div>
             </div>
           </div>
             `;
@@ -142,7 +143,7 @@
 
         // 댓글
         let commentAddHtml = `
-        <div class="commentsWrap">
+       
           <div class="comments">
             <div class="movieId">${movieId}</div>
             <div class="commentCount">
@@ -157,12 +158,14 @@
                 Temporibus provident est, cum rem beatae sapiente mollitia
                 similique quia quod eligendi labore!
               </p>
-              <button class="btn btn-warning coUpdateBtn" type="button">
-                수정
-              </button>
-              <button class="btn btn-warning coDeleteBtn" type="button">
-                삭제
-              </button>
+              <div class="commentBtnWrap">
+                <button class="btn btn-warning coUpdateBtn" type="button">
+                  수정
+                </button>
+                <button class="btn btn-warning coDeleteBtn" type="button">
+                  삭제
+                </button>  
+              </div>
             </div>
             <div class="commentBox">
               <p class="commentUser">작성자</p>
@@ -173,32 +176,37 @@
                 Temporibus provident est, cum rem beatae sapiente mollitia
                 similique quia quod eligendi labore!
               </p>
-              <button class="btn btn-warning coUpdateBtn" type="button">
-                수정
-              </button>
-              <button class="btn btn-warning coDeleteBtn" type="button">
-                삭제
-              </button>
+              <div class="commentBtnWrap">
+                <button class="btn btn-warning coUpdateBtn" type="button">
+                  수정
+                </button>
+                <button class="btn btn-warning coDeleteBtn" type="button">
+                  삭제
+                </button>  
+              </div>
             </div>
 
             <div class="commentInputBox">
-              <p class="commentUser">
+              <span class="commentUser">
                 <input
                   type="text"
                   placeholder="이름을 입력하세요"
                   id="username"
                 />
-              </p>
-              <span class="commentDate"> 2023-10-26 </span>
+              </span>
+             
               <p class="comment">
-                <input placeholder="리뷰를 작성해주세요" id="comment" />
+                <textarea class="review" id="comment" name="review" rows="1" cols="33" placeholder="리뷰를 작성해주세요"></textarea>
+              </p>
+              <p class="comment">
+                <input type="password" class="review" placeholder="비밀번호를 작성해주세요" id="comment" />
               </p>
               <button class="btn btn-warning coSubmitBtn" type="button">
                 확인
               </button>
             </div>
           </div>
-       </div>
+       
         `;
 
         commentWrap.innerHTML += commentAddHtml;
