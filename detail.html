@@ -130,7 +130,9 @@
                 </p>
               </div>
               <!-- <div class = "panel-btn"><h2>&blacktriangledown;</h2></div> -->
-              <div id="commentBtn" class="panel-btn commentCount"><i class="fa-solid fa-comment "></i></div>
+              <div id="commentBtn" class="panel-btn commentCount">
+                <i class="fa-solid fa-comment "></i>
+              </div>
             </div>
           </div>
             `;
@@ -159,64 +161,34 @@
        
           <div class="comments">
             <div class="movieId">${movieId}</div>
+            
             <div class="commentCount">
-              <i class="fa-solid fa-comment"></i><span>2(리뷰수)</span>
+              <i class="fa-solid fa-comment"></i><h7> <span></span></h7>
             </div>
-            <div class="commentBox">
-              <p class="commentUser">작성자</p>
-              <span class="commentDate"> 2023-10-26 </span>
-              <p class="comment">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Architecto consectetur quo eaque animi, rem aliquid fugiat natus.
-                Temporibus provident est, cum rem beatae sapiente mollitia
-                similique quia quod eligendi labore!
-              </p>
-              <div class="commentBtnWrap">
-                <button class="btn btn-warning coUpdateBtn" type="button">
-                  수정
-                </button>
-                <button class="btn btn-warning coDeleteBtn" type="button">
-                  삭제
-                </button>  
-              </div>
-            </div>
-            <div class="commentBox">
-              <p class="commentUser">작성자</p>
-              <span class="commentDate"> 2023-10-26 </span>
-              <p class="comment">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Architecto consectetur quo eaque animi, rem aliquid fugiat natus.
-                Temporibus provident est, cum rem beatae sapiente mollitia
-                similique quia quod eligendi labore!
-              </p>
-              <div class="commentBtnWrap">
-                <button class="btn btn-warning coUpdateBtn" type="button">
-                  수정
-                </button>
-                <button class="btn btn-warning coDeleteBtn" type="button">
-                  삭제
-                </button>  
-              </div>
+
+            <div id="CommentList" class="commentBox">
+              
             </div>
 
             <div class="commentInputBox">
-              <span class="commentUser">
-                <input
+              <form id="CommentForm">
+                <p class="commentUser">
+                  <input
                   type="text"
-                  placeholder="이름을 입력하세요"
+                  placeholder="이름을 입력해주세요"
                   id="username"
-                />
-              </span>
-             
-              <p class="comment">
+                  />
+                </p>
+                <p class="comment">
+                <input type="password" class="review" placeholder="비밀번호를 입력해주세요" id="password" />
+                </p>
+                <p class="comment">
                 <textarea class="review" id="comment" name="review" rows="1" cols="33" placeholder="리뷰를 작성해주세요"></textarea>
-              </p>
-              <p class="comment">
-                <input type="password" class="review" placeholder="비밀번호를 작성해주세요" id="comment" />
-              </p>
-              <button class="btn btn-warning coSubmitBtn" type="button">
-                확인
-              </button>
+                </p>
+                <button class="btn btn-warning coSubmitBtn" type="submit">
+                  등록
+                </button>
+              </form>
             </div>
           </div>
        
@@ -225,5 +197,6 @@
         commentWrap.innerHTML += commentAddHtml;
       }
     </script>
+    <script src="js/Comment.js"></script>
   </body>
 </html>
