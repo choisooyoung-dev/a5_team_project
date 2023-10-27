@@ -1,69 +1,117 @@
-let addhtml = `
-<div class="poster detail-poster" data-id=${movieId}>
-    <div class="card bg-dark text-white">
-        <div class="movieId">${movieId}</div>
-            <img src="${movieImgSrc}" class="card-img posterImg" alt="movie poster image" />
-            <div class="card-img-overlay posterContentsBox">
-            <h5 class="card-title title">${movieTitle}</h5>
-            <div class="contentWrap">
-                <p class="card-text">
-                <i class="fa-solid fa-star star"></i>${movieRating}
-                </p>
-                <p class="card-text">
-                ${movieReleaseDate}
-                </p>
-                <p class="card-text">${movieOverview}</p>
-            </div>
-        </div>
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MDUyZDk1YTU1NzM4OTZhOWUyZTRkMDZiYmFjZDkzYSIsInN1YiI6IjY1MmY2NDQ5MGNiMzM1MTZmNjQwYjlkZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V-gAyCfvw8yM8Ll7BDo1DEs9CS7vxzStmFhGra5s61g",
+  },
+};
+
+let temp = location.href.split("?");
+// console.log(temp);
+const movieId = temp[1];
+const panel = document.querySelector(".panel");
+const commentWrap = document.querySelector(".commentWrap");
+
+// getIdFunc() -> drawDetailFunc() 변경
+drawDetailFunc();
+
+// 댓글 함수 실행
+drawCommentFunc();
+
+// 상세페이지 그려주는 함수
+async function drawDetailFunc() {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}?language=ko`,
+    options
+  );
+  // console.log(response);
+  // console.log(response); // Response {type: 'cors', url: 'https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', redirected: false, status: 200, ok: true, …}
+  // json(클라이언트와 서버 간의 HTTP 통신 위한 텍스트 데이터 포맷)으로 표기
+  const movieData = await response.json();
+  console.log(movieData);
+
+  const movieImgSrc = movieData.backdrop_path;
+  const movieTitle = movieData.title;
+  const movieRating = movieData.vote_average;
+  const movieReleaseDate = movieData.release_date;
+  const movieOverview = movieData.overview;
+  let addhtml = `
+  <div class="panel-cover">
+      <img
+        class="panel-cover-src"
+        src="https://image.tmdb.org/t/p/w1280${movieImgSrc}"
+        alt=""
+      />
     </div>
-</div>
-<div class="poster detail-poster" data-id=${movieId}>
-    <div class="card bg-dark text-white">
-        <div class="movieId">${movieId}</div>
-            <div class="contentWrap">
-                <p class="card-text">
-                작성자
-                </p>
-                <p class="card-text">
-                작성일
-                </p>
-                <p class="card-text">
-                  댓글창
-                </p>
-                <p class="card-text">
-                비밀번호
-              </p>
-              <button class="btn btn-warning" type="button">
-              댓글 달기
-            </button>
-            </div>
+    <div class="panel-main">
+      <div class="panel-contents" style="display: block">
+        <h1 class="panel-title">${movieTitle}</h1>
+        <div>
+          <p>
+            ${movieOverview}
+          </p>
         </div>
-    </div>
-</div>
-<div class="poster detail-poster" data-id=${movieId}>
-    <div class="card bg-dark text-white">
-        <div class="movieId">${movieId}</div>
-            <div class="contentWrap">
-                <p class="card-text">
-                최수영
-                </p>
-                <p class="card-text">
-               2023-10-25
-                </p>
-                <p class="card-text">
-              우오라왕리ㅏ농라ㅗ아ㅣ
-                </p>
-                <p class="card-text">
-                비밀번호 입력하시오
-              </p>
-              <button class="btn btn-warning" type="button">
-              수정
-            </button>
-            <button class="btn btn-warning" type="button">
-              삭제
-            </button>
-            </div>
+        <!-- <div class = "panel-btn"><h2>&blacktriangledown;</h2></div> -->
+        <div id="commentBtn" class="panel-btn commentCount">
+          <i class="fa-solid fa-comment "></i>
         </div>
+      </div>
     </div>
-</div>
-`;
+      `;
+  panel.innerHTML += addhtml;
+
+  const commentBtn = document.getElementById("commentBtn");
+  console.log(commentBtn);
+  const coSection = document.querySelector(".coSection");
+  commentBtn.addEventListener("click", (e) => {
+    e.preventDefault;
+
+    if (coSection.style.display === "none") {
+      coSection.style.display = "flex";
+    } else {
+      coSection.style.display = "none";
+    }
+  });
+}
+
+// 리뷰 그려주는 함수
+async function drawCommentFunc() {
+  // 댓글
+  let commentAddHtml = `
+ 
+    <div class="comments">
+      <div class="movieId">${movieId}</div>
+      
+      <div class="commentCount">
+        <i class="fa-solid fa-comment"></i><h7> <span></span></h7>
+      </div>
+
+      <div id="CommentList" class="commentBox"></div>
+
+      <div class="commentInputBox">
+        <form id="CommentForm">
+          <p class="commentUser">
+            <input
+            type="text"
+            placeholder="이름을 입력해주세요"
+            id="username"
+            />
+          </p>
+          <p class="comment">
+            <input type="password" class="review" placeholder="비밀번호를 입력해주세요" id="password" />
+          </p>
+          <p class="comment">
+            <textarea class="review" id="comment" name="review" rows="1" cols="33" placeholder="리뷰를 작성해주세요"></textarea>
+          </p>
+          <button class="btn btn-warning coSubmitBtn" type="submit">
+            등록
+          </button>
+        </form>
+      </div>
+    </div>
+ 
+  `;
+
+  commentWrap.innerHTML += commentAddHtml;
+}
