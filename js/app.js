@@ -41,26 +41,7 @@ async function clickViewBtn() {
     }
   });
 }
-// 클릭이벤트 2개로 나누니 잘 작동함
-// error
-// 인기순이나 별점순 morebtn끝까지누르면 버튼이사라짐
-// 근데 인기순 눌러도 버튼이 안생김
-// async function switchCategory() {
-//   const ratingBtn = document.getElementById("ratingBtn");
-//   const popularBtn = document.getElementById("popularBtn");
-//   ratingBtn.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     category = "top_rated";
-//     // console.log(category);
-//     showMovie(category, count);
-//   });
-//   popularBtn.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     category = "popular";
-//     // console.log(category);
-//     showMovie(category, count);
-//   });
-// }
+
 function PopularityButton() {
   const popularBtn = document.getElementById("popularBtn");
   popularBtn.addEventListener("click", (e) => {

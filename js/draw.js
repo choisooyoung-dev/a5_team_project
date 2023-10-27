@@ -38,28 +38,13 @@ export async function draw(moviesData) {
 
 // 상세페이지 그려줌
 function AddClicklistener() {
-  //   const posterBox = document.querySelector(".posterBox");
   const poster = document.getElementsByClassName("poster");
-  //   const viewMoreBtn = document.querySelector(".viewMoreBtn");
-  //   const backBtn = document.querySelector(".backBtn");
-  //   console.log(viewMoreBtn);
-
   for (let i = 0; i < poster.length; i++) {
     poster[i].addEventListener("click", (e) => {
-      //   viewMoreBtn.classList.add("none");
-      //   backBtn.classList.remove("none");
       const movie = poster[i];
       const movieId = movie.dataset.id;
-      //   const movieTitle = movie.querySelector(".title").innerText;
-      //   const movieImgSrc = movie.querySelector("img").src;
-      //   const movieRating = movie.querySelector(".rating").innerText;
-      //   const movieReleaseDate = movie.querySelector(".reDate").innerText;
-      //   const movieOverview = movie.querySelector(".overview").innerText;
       location.href = `detail.html?${movieId}`;
       console.log(movieId);
-      //   posterBox.innerHTML = "";
-
-      //   posterBox.innerHTML += addhtml;
     });
   }
 }
