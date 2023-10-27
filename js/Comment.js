@@ -66,8 +66,8 @@ function DeleteComment() {
 
     if (checkcomment) {
         // 비밀번호가 일치하는 댓글을 제외시키고 업데이트된 댓글 목록 생성
-        let deletecomment = comments.filter(comments => comments !== checkcomment)
-        SetCommentFromMovieID(MOVIEID, deletecomment);
+        let updatecomment = comments.filter(comments => comments !== checkcomment)
+        SetCommentFromMovieID(MOVIEID, updatecomment);
         DisplayComments();
         Total();
     }
