@@ -76,12 +76,14 @@
 }
 
 /* Comments */
+
 .coSection {
   border-radius: 10px;
   background-color: #000;
   color: #fff;
-  width: 48%;
-  display: flex;
+  max-width: 920px;
+  /* width: 48%; */
+  /* display: none; */
   justify-content: center;
   align-items: center;
   margin-top: 70px;
@@ -90,6 +92,7 @@
 }
 
 .commentWrap {
+  /* max-width: 960px; */
 }
 
 .commentCount {
