@@ -61,6 +61,7 @@ async function drawDetailFunc() {
       `;
   panel.innerHTML += addhtml;
 
+  const sectionWrap = document.querySelector(".sectionWrap");
   const commentBtn = document.getElementById("commentBtn");
   console.log(commentBtn);
   const coSection = document.querySelector(".coSection");
@@ -69,8 +70,10 @@ async function drawDetailFunc() {
 
     if (coSection.style.display === "none") {
       coSection.style.display = "flex";
+      sectionWrap.classList.remove("vh");
     } else {
       coSection.style.display = "none";
+      sectionWrap.classList.add("vh");
     }
   });
 }
@@ -91,19 +94,21 @@ async function drawCommentFunc() {
 
       <div class="commentInputBox">
         <form id="CommentForm">
-          <p class="commentUser">
+         <div class="commentSignupBox">
+            <p class="commentUser">
             <input
             type="text"
             placeholder="이름을 입력해주세요"
             id="username"
             />
-          </p>
-          <p class="comment">
-            <input type="password" class="review" placeholder="비밀번호를 입력해주세요" id="password" />
-          </p>
-          <p class="comment">
-            <textarea class="review" id="comment" name="review" rows="1" cols="33" placeholder="리뷰를 작성해주세요"></textarea>
-          </p>
+            </p>
+            <p class="comment">
+              <input type="password" class="review" placeholder="비밀번호를 입력해주세요" id="password" />
+            </p>
+            <p class="comment">
+              <textarea class="review" id="comment" name="review" rows="1" cols="33" placeholder="한줄평을 작성해주세요"></textarea>
+            </p>
+         </div>
           <button class="btn btn-warning coSubmitBtn" type="submit">
             등록
           </button>

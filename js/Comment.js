@@ -20,6 +20,7 @@ function WriteComment(event) {
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
   let comment = document.getElementById("comment").value;
+  console.log(typeof comment);
 
   // 빈값 데이터 유효성검사
   if (username === "" || password === "" || comment === "") {
@@ -107,13 +108,15 @@ function DisplayComments() {
   comments.forEach((element, index) => {
     let comment_element = document.createElement("div");
     comment_element.innerHTML = `
-                <div class="commentBox">
-                    <p class="commentUser">${element.username}</p>
-                    <p class="comment">${element.comment}</p>
-                    <span class="commentDate"> 작성일자 : ${element.dateWritten} </span>
+                <div class="commentBoxWrap">
+                    <div class="reviewWrap">
+                        <p class="commentUser">${element.username}</p>
+                        <p class="comment">${element.comment}</p>
+                        <span class="commentDate"> 작성일자 : ${element.dateWritten} </span>
+                    </div>
                     <div class="commentBtnWrap">
-                    <button id="Del_btn" class="btn btn-warning Del_btn" type="button" onclick="DeleteComment(${index})">삭제</button>
-                    <button id="Edit_btn" class="btn btn-warning Edit_btn" type="button" onclick="EditComment(${index})">수정</button>
+                        <button id="Del_btn" class="btn btn-warning Del_btn" type="button" onclick="DeleteComment(${index})">삭제</button>
+                        <button id="Edit_btn" class="btn btn-warning Edit_btn" type="button" onclick="EditComment(${index})">수정</button>
                     </div>
                 </div>
                 `;
