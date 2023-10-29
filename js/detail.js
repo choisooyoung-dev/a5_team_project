@@ -36,25 +36,30 @@ async function drawDetailFunc() {
   const movieRating = movieData.vote_average;
   const movieReleaseDate = movieData.release_date;
   const movieOverview = movieData.overview;
+
   let addhtml = `
   <div class="panel-cover">
       <img
         class="panel-cover-src"
-        src="https://image.tmdb.org/t/p/w1280${movieImgSrc}"
+        src="https://image.tmdb.org/t/p/w1280/${movieImgSrc}"
         alt=""
       />
     </div>
     <div class="panel-main">
       <div class="panel-contents" style="display: block">
-        <h1 class="panel-title">${movieTitle}</h1>
+          <h1 class="panel-title">${movieTitle}</h1>
+          <div class="panel-info">  
+            <h4 class="panel-vote_average"><i class="fa-solid fa-star star"></i>${movieRating}</h4>
+            <h4 class="panel-release_date"><i class="fa-solid fa-calendar-days"></i>${movieReleaseDate}</h4>
+          </div> 
         <div>
+          <h3  class="panel-tagline">${movieData.tagline}</h3>
           <p>
-            ${movieOverview}
+          ${movieOverview}
           </p>
         </div>
-        <!-- <div class = "panel-btn"><h2>&blacktriangledown;</h2></div> -->
         <div id="commentBtn" class="panel-btn commentCount">
-          <i class="fa-solid fa-comment "></i>
+          <i class="fa-solid fa-comment"></i>
         </div>
       </div>
     </div>
