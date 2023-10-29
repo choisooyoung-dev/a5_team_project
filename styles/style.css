@@ -15,10 +15,12 @@ body {
   align-items: center;
   background-color: #181818;
 }
+
 .logo {
   color: #e9b802;
   cursor: pointer;
   margin-left: 80px;
+  margin-bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,6 +33,7 @@ body {
   font-size: 30px;
   transition: all 0.3s ease-out;
 }
+
 /* .logo:hover {
   background-color: #e9b802;
   color: #181818;
@@ -73,8 +76,37 @@ body {
   background-color: #333333;
 }
 
+.categoryWrap {
+  margin-top: 20px;
+  /* padding-left: 40px; */
+  padding-right: 40px;
+
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 100px;
+  text-align: center;
+}
+
+.categoryWrap button {
+  color: #333333;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 500;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.categoryWrap button:hover {
+  transform: translateY(-8px);
+}
+
+.rating-btn {
+  margin-right: 10px;
+}
+
 .posterBox {
-  padding: 70px 30px 70px 30px;
+  padding: 0px 30px 70px 30px;
   flex-wrap: wrap;
   display: flex;
   justify-content: center;
@@ -158,11 +190,6 @@ body {
 .star {
   margin-right: 5px;
   color: #e9b802;
-}
-
-.viewMoreBtn {
-  width: 200px;
-  height: auto;
 }
 
 .none {
@@ -264,3 +291,25 @@ a:hover {
     width: 50%;
   }
 } */
+
+.viewMoreBtnWrap {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 80px;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.viewMoreBtnWrap:hover {
+  transform: translateY(-10px);
+}
+
+.viewMoreBtn {
+  font-family: "Black Han Sans", sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  width: 400px;
+  height: 80px;
+}

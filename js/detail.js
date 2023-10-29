@@ -21,10 +21,7 @@ drawCommentFunc();
 
 // 상세페이지 그려주는 함수
 async function drawDetailFunc() {
-  const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?language=ko`,
-    options
-  );
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko`, options);
   // console.log(response);
   // console.log(response); // Response {type: 'cors', url: 'https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', redirected: false, status: 200, ok: true, …}
   // json(클라이언트와 서버 간의 HTTP 통신 위한 텍스트 데이터 포맷)으로 표기
@@ -49,8 +46,8 @@ async function drawDetailFunc() {
       <div class="panel-contents" style="display: block">
           <h1 class="panel-title">${movieTitle}</h1>
           <div class="panel-info">  
-            <h4 class="panel-vote_average"><i class="fa-solid fa-star star"></i>${movieRating}</h4>
-            <h4 class="panel-release_date"><i class="fa-solid fa-calendar-days"></i>${movieReleaseDate}</h4>
+            <h4 class="panel-vote_average"><i class="starIc fa-solid fa-star star"></i>${movieRating}</h4>
+            <h4 class="panel-release_date"><i class="calendar fa-solid fa-calendar-days"></i>${movieReleaseDate}</h4>
           </div> 
         <div>
           <h3  class="panel-tagline">${movieData.tagline}</h3>
@@ -59,7 +56,7 @@ async function drawDetailFunc() {
           </p>
         </div>
         <div id="commentBtn" class="panel-btn commentCount">
-          <i class="fa-solid fa-comment"></i>
+          <i class="coBtn fa-solid fa-comment"></i>
         </div>
         <div class = "back-btn">
         <span class="material-symbols-outlined" id="detail-backBtn">
