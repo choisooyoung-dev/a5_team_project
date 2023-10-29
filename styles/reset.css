@@ -1,7 +1,8 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  font-family: "Noto sans";
+  font-family: "Noto Sans KR", sans-serif;
+  /* font-family: "Black Han Sans", sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
