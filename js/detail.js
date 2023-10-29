@@ -61,24 +61,36 @@ async function drawDetailFunc() {
         <div id="commentBtn" class="panel-btn commentCount">
           <i class="fa-solid fa-comment"></i>
         </div>
+        <div class = "back-btn">
+        <span class="material-symbols-outlined" id="detail-backBtn">
+          arrow_circle_left
+          </span>
+        </div>
+        <div>
+        </div>
       </div>
     </div>
       `;
   panel.innerHTML += addhtml;
 
-  const sectionWrap = document.querySelector(".sectionWrap");
+  // const sectionWrap = document.querySelector(".sectionWrap");
   const commentBtn = document.getElementById("commentBtn");
   console.log(commentBtn);
   const coSection = document.querySelector(".coSection");
+  const detailbackBtn = document.getElementById("detail-backBtn");
+  detailbackBtn.addEventListener("click", (e) => {
+    window.history.back();
+  });
+  //
   commentBtn.addEventListener("click", (e) => {
     e.preventDefault;
 
     if (coSection.style.display === "none") {
       coSection.style.display = "flex";
-      sectionWrap.classList.remove("vh");
+      // sectionWrap.classList.remove("vh");
     } else {
       coSection.style.display = "none";
-      sectionWrap.classList.add("vh");
+      // sectionWrap.classList.add("vh");
     }
   });
 }
