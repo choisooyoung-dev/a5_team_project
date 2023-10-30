@@ -65,7 +65,6 @@ async function SearchMovie() {
     if (ccut.length < 20) {
       draw(ccut);
       searchMoreBtn.style.display = "none";
-      searchInput.focus();
     } else if (ccut.length === 20) {
       searchMoreBtn.style.display = "block";
       draw(ccut);
