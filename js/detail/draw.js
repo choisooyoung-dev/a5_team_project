@@ -21,7 +21,10 @@ drawCommentFunc();
 
 // 상세페이지 그려주는 함수
 async function drawDetailFunc() {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko`, options);
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}?language=ko`,
+    options
+  );
   // console.log(response);
   // console.log(response); // Response {type: 'cors', url: 'https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', redirected: false, status: 200, ok: true, …}
   // json(클라이언트와 서버 간의 HTTP 통신 위한 텍스트 데이터 포맷)으로 표기

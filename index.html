@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -13,13 +16,19 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans:wght@200;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles/reset.css" />
-    <link rel="stylesheet" href="./styles/style.css" />
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans:wght@200;500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <link rel="stylesheet" href="./styles/nav,footer.css" />
     <title>Collavie</title>
   </head>
   <style></style>
@@ -28,7 +37,12 @@
       <div class="navBox">
         <h1 class="logo"></h1>
         <form class="searchBox">
-          <input class="searchInput" type="text" id="searchInput" placeholder="Search Title" />
+          <input
+            class="searchInput"
+            type="text"
+            id="searchInput"
+            placeholder="Search Title"
+          />
           <button class="searchBtn" type="button" id="searchBtn">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
@@ -37,22 +51,43 @@
     </nav>
     <section>
       <div class="categoryWrap">
-        <button class="btn btn-warning rating-btn" type="button" id="ratingBtn">별점순</button>
-        <button class="btn btn-warning popular-btn" type="button" id="popularBtn">인기순</button>
+        <button class="btn btn-warning rating-btn" type="button" id="ratingBtn">
+          별점순
+        </button>
+        <button
+          class="btn btn-warning popular-btn"
+          type="button"
+          id="popularBtn"
+        >
+          인기순
+        </button>
       </div>
       <div class="posterBox"></div>
       <div class="viewMoreBtnWrap">
-        <button class="btn btn-warning viewMoreBtn" type="button">View More</button>
+        <button class="btn btn-warning viewMoreBtn" type="button">
+          View More
+        </button>
       </div>
       <div class="searchMoreBtnWrap">
-        <button class="btn btn-warning viewMoreBtn" type="button" id="searchMoreBtn" style="display: none">View More</button>
+        <button
+          class="btn btn-warning viewMoreBtn"
+          type="button"
+          id="searchMoreBtn"
+          style="display: none"
+        >
+          View More
+        </button>
       </div>
     </section>
     <footer>
       <div class="footerBox">
         <h3 class="logo" id="move-footer"></h3>
         <div class="footerIconBox">
-          <a href="https://github.com/choisooyoung-dev/a5_team_project" class="git"><i class="fa-brands fa-github fooIc"></i></a>
+          <a
+            href="https://github.com/choisooyoung-dev/a5_team_project"
+            class="git"
+            ><i class="fa-brands fa-github fooIc"></i
+          ></a>
         </div>
       </div>
     </footer>
@@ -61,8 +96,8 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="js/app.js"></script>
-    <script type="module" src="js/Search.js"></script>
-    <script src="js/logo,footer.js"></script>
+    <script type="module" src="js/index/app.js"></script>
+    <script type="module" src="js/search.js"></script>
+    <script src="js/nav,footer.js"></script>
   </body>
 </html>

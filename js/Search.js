@@ -1,16 +1,5 @@
-import { draw } from "./draw.js";
-// OPTIONS
-function Authorization() {
-  const OPTIONS = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MDUyZDk1YTU1NzM4OTZhOWUyZTRkMDZiYmFjZDkzYSIsInN1YiI6IjY1MmY2NDQ5MGNiMzM1MTZmNjQwYjlkZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V-gAyCfvw8yM8Ll7BDo1DEs9CS7vxzStmFhGra5s61g",
-    },
-  };
-  return OPTIONS;
-}
+import { draw } from "./index/draw.js";
+import { options } from "./API_KEY.js";
 
 // Search
 async function SearchMovie() {
@@ -24,7 +13,7 @@ async function SearchMovie() {
   for (let i = 1; i <= 3; i++) {
     const response = await fetch(
       `https://api.themoviedb.org/3/search/movie?${temp[1]}&include_adult=false&language=ko&page=${i}`,
-      Authorization()
+      options
     );
     const jsonData = await response.json();
     const searchData = jsonData.results;
@@ -76,6 +65,7 @@ async function SearchMovie() {
   searchInput.value = null;
 }
 
+// input
 async function ClickBtn() {
   const searchBtn = document.getElementById("searchBtn");
   searchBtn.addEventListener("click", () => {
@@ -113,7 +103,6 @@ function EnterBtn() {
         return;
       }
       location.href = `search.html?query=${inputData}`;
-      // 여기에 onload쓰면 이동한페이지에서 카드출력가능?
     }
   });
 }
