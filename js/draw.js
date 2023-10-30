@@ -36,7 +36,7 @@ export async function draw(moviesData) {
   AddClicklistener();
 }
 
-// 상세페이지 그려줌
+// 상세페이지 이동 url 아이디값 넣어줌
 function AddClicklistener() {
   const poster = document.getElementsByClassName("poster");
   for (let i = 0; i < poster.length; i++) {
