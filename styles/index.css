@@ -66,8 +66,15 @@ body {
 .searchBtn:hover {
   transform: translateY(-5px);
 }
+
 .poster:hover {
   transform: translateY(-10px);
+}
+
+.detailBtn {
+  transition: all 0.5s ease-in-out;
+  font-size: 20px;
+  margin-top: 20px;
 }
 
 .movieId {
