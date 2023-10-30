@@ -6,10 +6,16 @@
 
 ## 참여 인원
 
-- [김민수](https://github.com/0602kimminsoo)
-- [김윤겸](https://github.com/kimyungyeom)
-- [최수영](https://github.com/choisooyoung-dev)
-- [한승준](https://github.com/Han9526)
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://github.com/choisooyoung-dev"><img src="https://avatars.githubusercontent.com/u/108859974?v=4" width="100px;" alt=""/><br /><sub><b> 팀장 : 최수영 </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/0602kimminsoo"><img src="https://avatars.githubusercontent.com/u/148850020?v=4" width="100px;" alt=""/><br /><sub><b> 팀원 : 김민수 </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/kimyungyeom"><img src="https://avatars.githubusercontent.com/u/90022648?v=4" width="100px;" alt=""/><br /><sub><b> 팀원 : 김윤겸 </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/Han9526"><img src="https://avatars.githubusercontent.com/u/143992119?v=4" width="100px;" alt=""/><br /><sub><b> 팀원 : 한승준 </b></sub></a><br /></td>
+    </tr>
+  </tbody>
+</table>
 
 ## 주요 기능
 
