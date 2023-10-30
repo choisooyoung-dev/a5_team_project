@@ -7,8 +7,6 @@ export async function draw(moviesData) {
     const movieId = movie.id;
     const movieTitle = movie.title;
     const movieImg = movie.backdrop_path;
-    const movieRating = movie.vote_average;
-    const movieReleaseDate = movie.release_date;
     const movieOverview = movie.overview;
     // console.log(movieReleaseDate);
     let addhtml = `
@@ -19,13 +17,7 @@ export async function draw(moviesData) {
             <div class="card-img-overlay posterContentsBox">
             <h5 class="card-title title">${movieTitle}</h5>
                 <div class="contentWrap">
-                    <p class="card-text rating">
-                    <i class="fa-solid fa-star star"></i>${movieRating}
-                    </p>
-                    <p class="card-text reDate">
-                    ${movieReleaseDate}
-                    </p>
-                    <p class="none overview">${movieOverview}</p>
+                <button class="btn btn-warning detailBtn" type="button" style="display: none" >더보기</button>
                 </div>
             </div>
         </div>
@@ -39,6 +31,7 @@ export async function draw(moviesData) {
 // 상세페이지 이동 url 아이디값 넣어줌
 function AddClicklistener() {
   const poster = document.getElementsByClassName("poster");
+  const detailBtn = document.getElementsByClassName("detailBtn");
   for (let i = 0; i < poster.length; i++) {
     poster[i].addEventListener("click", (e) => {
       const movie = poster[i];
@@ -46,5 +39,16 @@ function AddClicklistener() {
       location.href = `detail.html?${movieId}`;
       console.log(movieId);
     });
+    poster[i].addEventListener("mouseenter", (e) => {
+      detailBtn[i].style.display = "block";
+    });
+    poster[i].addEventListener("mouseleave", (e) => {
+      detailBtn[i].style.display = "none";
+    });
   }
 }
+
+/* <button class="btn btn-warning detailBtn" type="button" style="display: none" >더보기</button>
+// 1. 메인페이지 평점과 개봉일 지우기 */
+// 2. 제목 폰트 키우기
+// 3. 마우스 호버(더보기) 추가
