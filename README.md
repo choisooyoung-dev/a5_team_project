@@ -1,4 +1,4 @@
-a.# 영화 검색 웹사이트 프로젝트
+# 영화 검색 웹사이트 프로젝트
 
 [![](./logo.PNG)](https://choisooyoung-dev.github.io/a5_team_project/)
 
